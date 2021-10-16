@@ -46,43 +46,6 @@ export default function Home({ data:{global, home, teachers, classes} }) {
           exit="exit"
           className="mb-12 md:mb-16 xl:mb-24"
         >
-          <div className="bg-primary h-screen xl:max-h-[1000px]">
-            <Container>
-              <div className="flex flex-col items-center justify-center text-white">
-                <p className="text-center">
-                  {home.heroSubHeading}
-                  <span className="block">{home.heroHeading}</span>
-                </p>
-
-                <div className="">
-                  <FancyLink destination="/class-timetable" a11yText="View class information" label="Our Classes" extraClasses="btn" />
-                  <FancyLink destination="/our-teachers" a11yText="View teacher profiles information" label="Our Teachers" extraClasses="btn btn--outline" />
-                </div>
-              </div>
-            </Container>
-          </div>
-
-          
-            <Container>
-              {home.inspirationalQuote}
-            </Container>
-          
-
-          <Container>
-
-            <m.article variants={fade}>
-
-              <h1 className="mb-4 text-2xl font-bold md:text-3xl xl:text-4xl">{home.aboutContentHeading}</h1>
-
-              <div className="max-w-3xl mb-4 content">
-                <BlockContent serializers={{ container: ({ children }) => children }} blocks={home.aboutContent} />
-              </div>
-              
-              <FancyLink destination="/about" a11yText="Navigate to the about page" label="About Page" />
-
-            </m.article>
-
-          </Container>
 
           <Container>
             {teachers.map((teacher, index) => {
@@ -90,18 +53,6 @@ export default function Home({ data:{global, home, teachers, classes} }) {
                 <div className="" key={index}>
                   {teacher.name}
                   {teacher.position}
-                </div>
-              )
-            })}
-          </Container>
-
-          <Container>
-            {classes.map((item, index) => {
-              return (
-                <div className="" key={index}>
-                  {item.className}
-                  {item.contentHeading}
-                  <BlockContent serializers={{ container: ({ children }) => children }} blocks={item.content} />
                 </div>
               )
             })}
@@ -150,14 +101,6 @@ const query = `{
       asset->
     }
   },
-  "classes": *[_type == "class"] {
-    className,
-    contentHeading,
-    content,
-    classImage {
-      asset->
-    }
-  }
 }`
 
 export async function getStaticProps() {

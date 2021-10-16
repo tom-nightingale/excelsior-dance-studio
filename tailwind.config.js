@@ -4,7 +4,7 @@ module.exports = {
   darkMode: false,
   theme: {
     fontFamily: {
-      'sans': ['Arial', 'sans-serif'],
+      'sans': ['Nunito Sans', 'Arial', 'sans-serif'],
       'mono': ['Lucida Console', 'Courier', 'monospace'],
     },
     screens: {
@@ -19,10 +19,10 @@ module.exports = {
       colors: {
         'black': '#000',
         'white': '#FFF',
-        'example-color': {
-          light: '#ffb288',
-          DEFAULT: '#d18d67',
-          dark: '#ce8860',
+        'primary': {
+          light: '#FFC1F2',
+          DEFAULT: '#230119',
+          dark: '#230119',
         },
       }
     },
