@@ -9,27 +9,27 @@ export default function Header({ global }) {
   const navItems = [
     {
       name: "Home",
-      url: "",
+      url: "/",
     },
     {
       name: "Our Teachers",
-      url: "our-teachers",
+      url: "/our-teachers",
     },
     {
       name: "Class Timetable",
-      url: "class-timetable",
+      url: "/class-timetable",
     },
     {
       name: "Unity",
-      url: "unity",
+      url: "/unity",
     },
     {
       name: "Gallery",
-      url: "gallery",
+      url: "/gallery",
     },
     {
       name: "Contact",
-      url: "contact",
+      url: "/contact",
     }
   ];
   
