@@ -1,14 +1,14 @@
 {
-  "name": "next-tailwind-motion",
-  "description": "A simple Next.js starter kit with TailwindCSS (JIT) and Framer Motion preconfigured",
-  "author": "Sam Goddard <hello@samgoddard.co.uk> (https://samgoddard.co.uk)",
+  "name": "excelsior",
+  "description": "Excelsior School of Dance",
+  "author": "Tom Nightingale <tom@weareleague.co.uk> (https://weareleague.co.uk)",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git@github.com:samuelgoddard/next-tailwind-motion.git"
+    "url": "git@github.com:tom-nightingale/excelsior-dance-studio.git"
   },
   "bugs": {
-    "url": "https://github.com/samuelgoddard/next-tailwind-motion/issues"
+    "url": "https://github.com/tom-nightingale/excelsior-dance-studio/issues"
   },
   "license": "ISC",
   "keywords": [
@@ -19,7 +19,7 @@
     "motion",
     "preact"
   ],
-  "homepage": "https://sg-next-tailwind-motion.vercel.app/",
+  "homepage": "https://excelsior.vercel.app/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -34,7 +34,12 @@
     "postcss-preset-env": "^6.7.0",
     "preact": "^10.5.13",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/client": "^2.16.0",
+    "@sanity/image-url": "^0.140.22",
+    "next-sanity": "^0.4.0",
+    "next-sanity-image": "^3.1.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
