@@ -13,6 +13,8 @@ import { NextSeo } from 'next-seo'
 
 export default function Home({ data:{global, home, teachers, classes} }) {
 
+  
+
   // const heroBackgroundProps = useNextSanityImage(
 	// 	sanity,
 	// 	home.heroBackgroundImage
@@ -36,7 +38,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
         }}
       />
 
-      <Header />
+      <Header global={global}/>
       
       <LazyMotion features={domAnimation}>
 
@@ -46,7 +48,16 @@ export default function Home({ data:{global, home, teachers, classes} }) {
           exit="exit"
           className="mb-12 md:mb-16 xl:mb-24"
         >
-          <div className="bg-primary h-screen xl:max-h-[1000px]">
+          <div className="relative bg-primary h-screen xl:max-h-[1000px]">
+
+            <div className="absolute inset-0 z-0">
+              {home.heroImages.map((image, index) => {
+                return(
+                  <img key={index} className="object-cover object-center w-full h-full" src={image.asset.url} alt="Excelsior Dance Studio" />
+                )
+              })}
+            </div>
+            
             <Container>
               <div className="flex flex-col items-center justify-center text-white">
                 <p className="text-center">
