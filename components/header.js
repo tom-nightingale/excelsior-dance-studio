@@ -1,37 +1,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { navItems } from '@/lib/navItems';
 import FancyLink from '@/components/fancyLink'
 import Container from '@/components/container'
 import { m, motion } from 'framer-motion';
 
 export default function Header({ global }) {
-
-  const navItems = [
-    {
-      name: "Home",
-      url: "/",
-    },
-    {
-      name: "Our Teachers",
-      url: "/our-teachers",
-    },
-    {
-      name: "Class Timetable",
-      url: "/class-timetable",
-    },
-    {
-      name: "Unity",
-      url: "/unity",
-    },
-    {
-      name: "Gallery",
-      url: "/gallery",
-    },
-    {
-      name: "Contact",
-      url: "/contact",
-    }
-  ];
   
   const router = useRouter();
   // let currentPath = router.pathname;

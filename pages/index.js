@@ -149,7 +149,13 @@ export default function Home({ data:{global, home, teachers, classes} }) {
         
       </LazyMotion>
 
-      <Footer />
+      <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
+        <Container>
+          <p>Give us a call today to book or to find out more <span className="block text-primary-light">{global.phoneNumber}</span></p>
+        </Container>
+      </div>
+
+      <Footer global={global} />
 
     </Layout>
   )
