@@ -45,7 +45,7 @@ export default function Header({ global }) {
 
       <Container>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between py-4">
 
           <img className="w-full max-w-[175px] 3xl:max-w-[285px]" src="/images/logo.png" alt="Excelsior Logo" />
 
@@ -71,25 +71,37 @@ export default function Header({ global }) {
     </header>
 
     {/* Slideout Menu */}
-    <div open={open} className={`z-10 w-1/2 bg-blue-500 h-screen fixed right-0 transition duration-500 ${open ? 'translate-x-0' : 'transform translate-x-full'}`}>
+    <div open={open} className={`z-10 w-full md:w-1/2 bg-primary-dark text-white h-screen fixed right-0 transition duration-500 ${open ? 'translate-x-0' : 'transform translate-x-full'}`}>
 
-        <button aria-label="Close Menu Menu" open={open} onClick={() => setOpen(!open)} className={`btn-mobile-menu open absolute top-10 right-7`}>
+        <button aria-label="Close Menu Menu" open={open} onClick={() => setOpen(!open)} className={`btn-mobile-menu open absolute top- right-7`}>
             <span />
             <span />
             <span />
         </button>
 
-        <ul className="mt-20">
+        <div className="p-8 font-black">
 
-          {navItems.map((item, index) => {
-            return(
-              <li key={index} className="">
-                <FancyLink destination={item.url} a11yText={`Go to the ${item.name} page`} label={item.name} />
-              </li>
-            )
-          })}
+          <ul className="flex-col items-center justify-center my-24">
 
-        </ul>
+            {navItems.map((item, index) => {
+              return(
+                <li key={index} className="">
+                  <FancyLink destination={item.url} a11yText={`Go to the ${item.name} page`} label={item.name} extraClasses="inline-block py-2 tracking-wide uppercase" />
+                </li>
+              )
+            })}
+
+          </ul>
+          
+          <div className="text-sm">
+            <p className="mb-2"><a href={`tel:{global.phoneNumber}`} className="">{global.phoneNumber}</a></p>
+            <p className="mb-2"><a href={`mailto:{global.emailAddress}`} className="">{global.emailAddress}</a></p>
+            <p>{global.address}</p>
+          </div>
+
+        </div>
+
+
         
     </div>
     {/* End Slideout Menu */}
