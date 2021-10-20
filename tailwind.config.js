@@ -16,14 +16,20 @@ module.exports = {
       "3xl": "1920px"
     },
     extend: {
+      screens: {
+        'landscape': {'raw': '(orientation: landscape)'},
+      },
       colors: {
         'black': '#000',
         'white': '#FFF',
         'primary': {
           light: '#FFC1F2',
           DEFAULT: '#230119',
-          dark: '#230119',
+          dark: '#010101',
         },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       }
     },
   },

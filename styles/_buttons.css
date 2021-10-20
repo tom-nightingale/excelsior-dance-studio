@@ -1,5 +1,6 @@
 .btn {
-    @apply inline-block px-4 py-2 font-black tracking-wide no-underline uppercase rounded-full bg-primary-light;
+    @apply inline-block px-6 py-4 font-black tracking-wide no-underline uppercase rounded-full bg-primary-light;
+    @apply lg:py-5 lg:px-8;
 
     &:hover {
         
@@ -7,7 +8,7 @@
 }
 
 .btn--outline {
-    @apply bg-transparent border-2 border-white;
+    @apply bg-transparent border-2 border-primary-light;
 
     &:hover {
         
