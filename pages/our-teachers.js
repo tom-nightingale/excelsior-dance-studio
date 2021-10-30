@@ -36,7 +36,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
         }}
       />
 
-      <Header />
+      <Header global={global}/>
       
       <LazyMotion features={domAnimation}>
 
@@ -62,7 +62,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
         
       </LazyMotion>
 
-      <Footer />
+      <Footer global={global} />
 
     </Layout>
   )

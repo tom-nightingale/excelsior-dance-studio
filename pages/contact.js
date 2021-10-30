@@ -36,7 +36,7 @@ export default function Home({ data:{global, contact} }) {
         }}
       />
 
-      <Header />
+      <Header global={global}/>
       
       <LazyMotion features={domAnimation}>
 
@@ -53,7 +53,7 @@ export default function Home({ data:{global, contact} }) {
         
       </LazyMotion>
 
-      <Footer />
+      <Footer global={global} />
 
     </Layout>
   )
@@ -67,12 +67,12 @@ const query = `{
     emailAddress,
     youtubeUrl,
     instagramUrl,
-    facebookUrl
+    facebookUrl,
   },
   "contact": *[_type == "contact"][0] {
     title,
     contentHeading,
-    content
+    content,
     seo {
       ...,
       shareGraphic {

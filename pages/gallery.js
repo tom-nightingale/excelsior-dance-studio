@@ -36,7 +36,7 @@ export default function Home({ data:{global, gallery} }) {
         }}
       />
 
-      <Header />
+      <Header global={global}/>
       
       <LazyMotion features={domAnimation}>
 
@@ -53,7 +53,7 @@ export default function Home({ data:{global, gallery} }) {
         
       </LazyMotion>
 
-      <Footer />
+      <Footer global={global} />
 
     </Layout>
   )
@@ -72,14 +72,14 @@ const query = `{
   "gallery": *[_type == "gallery"][0] {
     title,
     contentHeading,
-    content
+    content,
     seo {
       ...,
       shareGraphic {
         asset->
       }
     }
-  }
+  },
 }`
 
 export async function getStaticProps() {
