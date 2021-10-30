@@ -1,6 +1,7 @@
 import { navItems } from '@/lib/navItems';
 import Container from '@/components/container'
 import FancyLink from '@/components/fancyLink'
+import { FiInstagram, FiYoutube, FiFacebook } from "react-icons/fi";
 
 export default function Footer({ global }) {
   return (
@@ -28,23 +29,23 @@ export default function Footer({ global }) {
 
       <div className="py-8 bg-primary-dark">
         <Container>
-              <div className="flex justify-between text-white">
+              <div className="flex flex-col justify-between text-sm text-center text-white lg:flex-row lg:text-left">
 
-                  <p>© Copyright Excelsior Dance Studios 2021 - All rights reserved</p>
+                  <p className="my-4 lg:my-0">© Copyright Excelsior Dance Studios 2021 - All rights reserved</p>
 
-                  <p>01623 479467               56 Station Street, Mansfield Woodhouse, NG19 8AB</p>
+                  <p className="my-4 lg:my-0"><a className="transition duration-500 text-primary-light hover:text-white" href={`tel:${global.phoneNumber}`}>{global.phoneNumber}</a> <span className="text-xs">&bull;</span> {global.address}</p>
 
-                  <ul>
+                  <ul className="flex items-center justify-center my-4 text-2xl lg:justify-start text-primary-light lg:my-0">
                     <li>
-                      <a href={global.youtubeUrl} rel="noreferrer" target="_blank">Youtube</a>
+                      <a href={global.youtubeUrl} rel="noreferrer" target="_blank" className="inline-block mx-2 transition duration-500 hover:text-white"><FiYoutube /></a>
                     </li>
 
                      <li>
-                      <a href={global.instagramUrl} rel="noreferrer" target="_blank">Insta</a>
+                      <a href={global.instagramUrl} rel="noreferrer" target="_blank" className="inline-block mx-2 transition duration-500 hover:text-white"><FiInstagram /></a>
                     </li>
 
                      <li>
-                      <a href={global.facebookUrl} rel="noreferrer" target="_blank">Facebook</a>
+                      <a href={global.facebookUrl} rel="noreferrer" target="_blank" className="inline-block mx-2 transition duration-500 hover:text-white"><FiFacebook /></a>
                     </li>
                   </ul>
 

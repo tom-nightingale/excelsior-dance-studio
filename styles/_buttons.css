@@ -1,9 +1,13 @@
 .btn {
-    @apply inline-block px-6 py-4 font-black tracking-wide no-underline uppercase rounded-full bg-primary-light;
+    @apply inline-block px-6 py-4 font-black tracking-wide no-underline uppercase transition-all duration-500 rounded-full bg-primary-light;
     @apply lg:py-5 lg:px-8;
 
     &:hover {
-        
+        @apply bg-white text-primary;
+    }
+
+    &:active {
+        @apply shadow-xl;
     }
 }
 
@@ -11,6 +15,10 @@
     @apply bg-transparent border-2 border-primary-light;
 
     &:hover {
-        
+        @apply text-white border-white bg-primary;
+    }
+
+    &:active {
+        @apply shadow-xl;
     }
 }

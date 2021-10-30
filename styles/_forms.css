@@ -1,0 +1,11 @@
+form {
+    @apply text-sm
+}
+
+input, textarea {
+    @apply p-4 mb-4 rounded-full;
+}
+
+input[type=submit] {
+    
+}

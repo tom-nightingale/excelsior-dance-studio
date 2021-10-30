@@ -8,6 +8,7 @@
 /* Custom Style Imports */
 @import '_typography.css';
 @import '_buttons.css';
+@import '_forms.css';
 
 /* Tailwind Utilities */
 @import 'tailwindcss/utilities';
@@ -51,4 +52,12 @@ body {
 
 .vertical-rl {
   writing-mode: vertical-rl;
+}
+
+.carousel-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.carousel-container::-webkit-scrollbar { /* WebKit */
+  display: none;
 }

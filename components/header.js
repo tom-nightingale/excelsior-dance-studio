@@ -4,6 +4,7 @@ import { navItems } from '@/lib/navItems';
 import FancyLink from '@/components/fancyLink'
 import Container from '@/components/container'
 import { m, motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Header({ global }) {
   
@@ -21,13 +22,17 @@ export default function Header({ global }) {
 
         <div className="flex items-center justify-between py-4">
 
-          <img className="w-full max-w-[175px] 3xl:max-w-[200px]" src="/images/logo.png" alt="Excelsior Logo" />
+          <Link href="/">
+            <a>
+              <img className="w-full max-w-[175px] 3xl:max-w-[200px]" src="/images/logo.png" alt="Excelsior Logo" />
+            </a>
+          </Link>
 
           <div className="flex items-center">
 
             <div className="flex-col hidden text-white mr-[3vw] md:flex">
-              <a href={`tel:${global.phoneNumber}`} className="">{global.phoneNumber}</a>
-              <a href={`mailto:${global.emailAddress}`} className="">{global.emailAddress}</a>
+              <a href={`tel:${global.phoneNumber}`} className="mr-auto relative after:w-0 hover:after:w-full after:absolute after:bottom-0 after:left-0 after:transition-all after:h-[1px] after:bg-white after:duration-500">{global.phoneNumber}</a>
+              <a href={`mailto:${global.emailAddress}`} className="relative after:w-0 hover:after:w-full after:absolute after:bottom-0 after:left-0 after:transition-all after:h-[1px] after:bg-white after:duration-500">{global.emailAddress}</a>
             </div>
 
             <button aria-label="Open Menu" open={open} onClick={() => setOpen(!open)} className={`btn-mobile-menu ${open ? 'open' : ''}`}>
@@ -68,8 +73,8 @@ export default function Header({ global }) {
           </ul>
           
           <div className="text-sm lg:text-base">
-            <p className="mb-4"><a href={`tel:${global.phoneNumber}`} className="">{global.phoneNumber}</a></p>
-            <p className="mb-4"><a href={`mailto:${global.emailAddress}`} className="">{global.emailAddress}</a></p>
+            <p className="mb-4"><a href={`tel:${global.phoneNumber}`} className="relative after:w-0 hover:after:w-full after:absolute after:bottom-0 after:left-0 after:transition-all after:h-[1px] after:bg-white after:duration-500">{global.phoneNumber}</a></p>
+            <p className="mb-4"><a href={`mailto:${global.emailAddress}`} className="relative after:w-0 hover:after:w-full after:absolute after:bottom-0 after:left-0 after:transition-all after:h-[1px] after:bg-white after:duration-500">{global.emailAddress}</a></p>
             <p>{global.address}</p>
           </div>
 
