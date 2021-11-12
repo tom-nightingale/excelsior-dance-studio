@@ -110,7 +110,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
             
             <p className="absolute left-0 flex items-center justify-center w-2/12 h-full text-lg font-black tracking-wider text-center text-white uppercase transform rotate-180 -translate-y-1/2 md:w-1/12 md:text-xl lg:text-4xl top-1/2 vertical-rl">Our teachers</p>
 
-            <div className="flex w-10/12 py-8 ml-auto bg-white md:w-11/12">
+            <div className="w-10/12 py-8 ml-auto bg-white md:w-11/12">
               <Carousel items={teachers} />
               {/* {teachers.map((teacher, index) => {
                 return (
