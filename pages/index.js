@@ -137,6 +137,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
 
             <div className="flex flex-wrap w-10/12 p-4 bg-white xl:p-8 md:w-11/12">
               {classes.map((item, index) => {
+                console.log(item.slug.current);
                 return (
                   <div className="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/5" key={index}>
                     <div className="relative flex flex-wrap w-full bg-primary-dark min-h-[200px] overflow-hidden">
@@ -214,11 +215,6 @@ export default function Home({ data:{global, home, teachers, classes} }) {
           </Container>
         </div>
 
-        
-
-
-        
-        
       </LazyMotion>
 
       <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
@@ -272,17 +268,17 @@ const query = `{
     }
   },
   "classes": *[_type == "class"] {
-    className,
+    title,
     contentHeading,
     content,
     classImage {
       asset->
-    }
+    },
+    slug
   }
 }`
 
 export async function getStaticProps() {
-
   const data = await sanity.fetch(query);
 
   return {

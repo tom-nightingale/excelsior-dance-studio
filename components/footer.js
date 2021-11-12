@@ -11,7 +11,7 @@ export default function Footer({ global }) {
 
         <Container>
 
-          <ul className="flex flex-wrap items-center justify-around max-w-screen-xl mx-auto text-lg font-black tracking-wider text-white uppercase">
+          <ul className="flex flex-col items-center justify-around max-w-screen-xl mx-auto text-lg font-black tracking-wider text-white uppercase md:flex-row md:flex-wrap">
 
               {navItems.map((item, index) => {
                 return(
