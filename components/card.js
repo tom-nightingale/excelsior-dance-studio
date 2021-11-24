@@ -1,12 +1,4 @@
-import sanity from "@/lib/sanity"
-import { useNextSanityImage } from 'next-sanity-image';
-
-export default function Card({ index, image, name, position, containerClasses, cardClasses }) {
-    // const Img = useNextSanityImage(
-	// 	sanity,
-	// 	image
-	// );
-
+export default function Card({ image, name, position, containerClasses, cardClasses }) {
     return (
         <div className={containerClasses}>
             <div className={cardClasses}>
