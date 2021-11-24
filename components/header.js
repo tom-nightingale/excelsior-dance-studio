@@ -6,7 +6,7 @@ import Container from '@/components/container'
 import { m, motion } from 'framer-motion';
 import Link from 'next/link';
 
-export default function Header({ global }) {
+export default function Header({ global, isHome }) {
   
   const router = useRouter();
   // let currentPath = router.pathname;
@@ -16,7 +16,7 @@ export default function Header({ global }) {
   return (
     <>
 
-    <header className="absolute top-0 left-0 z-10 w-full">
+    <header className={`absolute top-0 left-0 z-10 w-full ${isHome ? '' : 'bg-gradient-to-r from-primary via-primary-dark to-primary'}`}>
 
       <Container>
 

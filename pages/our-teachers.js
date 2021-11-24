@@ -8,15 +8,11 @@ import Footer from '@/components/footer'
 import Container from '@/components/container'
 import FancyLink from '@/components/fancyLink'
 import { fade } from '@/helpers/transitions'
+import Card from '@/components/card'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
-export default function Home({ data:{global, home, teachers, classes} }) {
-
-  // const heroBackgroundProps = useNextSanityImage(
-	// 	sanity,
-	// 	home.heroBackgroundImage
-	// );
+export default function Page({ data:{global, home, teachers} }) {
 
   return (
     <Layout>
@@ -44,18 +40,28 @@ export default function Home({ data:{global, home, teachers, classes} }) {
           initial="initial"
           animate="enter"
           exit="exit"
-          className="mb-12 md:mb-16 xl:mb-24"
+          className="py-48 md:py-56"
         >
 
           <Container>
-            {teachers.map((teacher, index) => {
-              return (
-                <div className="" key={index}>
-                  {teacher.name}
-                  {teacher.position}
-                </div>
-              )
-            })}
+
+              <h1 className="text-center">Our Teachers</h1>
+
+              <div className="flex-wrap justify-center xs:flex">
+                {teachers.map((teacher, index) => {
+                  return (
+                    <Card 
+                      key={index}
+                      containerClasses="w-full xs:w-1/2 md:w-1/3 p-4 xl:w-1/4 3xl:w-1/5"
+                      cardClasses="shadow-lg p-4 rounded-md"
+                      image={teacher.profilePhoto}
+                      name={teacher.name}
+                      position={teacher.position} 
+                    />
+                  )
+                })}
+              </div>              
+           
           </Container>
 
         </m.div>
@@ -94,7 +100,7 @@ const query = `{
       }
     }
   },
-  "teachers": *[_type == "teacher"] {
+  "teachers": *[_type == "teacher"] | order(name asc) {
     name,
     position,
     profilePhoto {
