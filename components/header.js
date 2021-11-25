@@ -16,7 +16,7 @@ export default function Header({ global, isHome }) {
   return (
     <>
 
-    <header className={`absolute top-0 left-0 z-10 w-full ${isHome ? '' : 'bg-gradient-to-r from-primary via-primary-dark to-primary'}`}>
+    <header className={`absolute top-0 left-0 z-10 w-full ${!isHome ? 'bg-gradient-to-r from-primary via-primary-dark to-primary' : ''}`}>
 
       <Container>
 
