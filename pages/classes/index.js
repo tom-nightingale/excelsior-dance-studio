@@ -172,16 +172,18 @@ useEffect(() => {
           </Container>
         </div>
 
+        <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
+          <Container>
+            <p>Give us a call today to book or to find out more</p>
+            <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
+          </Container>
+        </div>
+
+        <Footer global={global} />
+
       </LazyMotion>
 
-      <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
-        <Container>
-          <p>Give us a call today to book or to find out more</p>
-          <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
-        </Container>
-      </div>
-
-      <Footer global={global} />
+      
 
     </Layout>
   )

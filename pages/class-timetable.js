@@ -122,7 +122,7 @@ export default function Page({ data:{global, home, classes} }) {
                         <div className="w-1/5">£5.00*</div>
                       </div>
 
-                      <p className="p-4 mt-8 text-xs font-bold tracking-wider text-center text-white uppercase rounded-md bg-gradient-to-r from-primary-dark via-primary to-primary-dark">* Supersaver! Musical Theatre and Singing for £7!</p>
+                      <p className="p-4 mt-8 text-xs font-black tracking-wider text-center text-white uppercase rounded-md bg-gradient-to-r from-primary-dark via-primary to-primary-dark">* Supersaver! Musical Theatre and Singing for £7!</p>
 
                     </div>
                   </TabPanel>
@@ -154,10 +154,12 @@ export default function Page({ data:{global, home, classes} }) {
           </div>
 
         </m.div>
+
+        <Footer global={global} />
         
       </LazyMotion>
 
-      <Footer global={global} />
+      
 
     </Layout>
   )

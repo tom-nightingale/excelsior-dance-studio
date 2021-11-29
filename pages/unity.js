@@ -13,11 +13,6 @@ import { NextSeo } from 'next-seo'
 
 export default function Page({ data:{global, page} }) {
 
-  // const heroBackgroundProps = useNextSanityImage(
-	// 	sanity,
-	// 	home.heroBackgroundImage
-	// );
-
   return (
     <Layout>
       
@@ -61,10 +56,10 @@ export default function Page({ data:{global, page} }) {
           </div>
 
         </m.div>
+
+        <Footer global={global} />
         
       </LazyMotion>
-
-      <Footer global={global} />
 
     </Layout>
   )

@@ -9,6 +9,7 @@ import Layout from '@/components/layout'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
+import ContactForm from '@/components/contactForm'
 import Carousel from '@/components/carousel'
 import FancyLink from '@/components/fancyLink'
 import { fade, heroSubheading, heroHeading, heroButton} from '@/helpers/transitions'
@@ -181,40 +182,23 @@ export default function Home({ data:{global, home, teachers, classes} }) {
               <div className="w-full p-8 text-center text-white lg:w-1/2 xl:p-20">
                 <h2>Get in touch</h2>
                 <p className="max-w-screen-sm py-4 mx-auto mb-8">If you have any questions then why not drop us a message below and a member of the team will be in touch as soon as possible</p>
-                <form id="form" action="https://formspree.io/f/YOURAPI" method="POST" className="flex flex-wrap -m-1 overflow-x-hidden text-primary-dark">
-                  <label className="w-full px-2 py-1 md:w-1/2">
-                    <input required type="text" className="w-full" name="name" placeholder="Name" />
-                  </label>
-                  <label className="w-full px-2 py-1 md:w-1/2">
-                    <input required type="tel" className="w-full" name="telephone" placeholder="Telephone" />
-                  </label>
-                  <label className="w-full p-1">
-                    <input required type="email" className="w-full" name="email" placeholder="Email" />
-                  </label>
-                  <label className="w-full p-1">
-                    <textarea required placeholder="Your message" name="message" className="w-full"></textarea>
-                  </label>
-                  <input type="text" name="_gotcha" className="hidden" />
-                  <div className="w-full p-1">
-                    <input type="submit" className="mx-auto mb-4 btn md:mx-4 md:mb-0 text-primary" value="Send Enquiry" />
-                  </div>
-                </form>
+                <ContactForm />
               </div>
               
             </div>
           </Container>
         </div>
 
+        <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
+          <Container>
+            <p>Give us a call today to book or to find out more</p>
+            <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
+          </Container>
+        </div>
+
+        <Footer global={global} />
+
       </LazyMotion>
-
-      <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
-        <Container>
-          <p>Give us a call today to book or to find out more</p>
-          <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
-        </Container>
-      </div>
-
-      <Footer global={global} />
 
     </Layout>
   )

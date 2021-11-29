@@ -134,10 +134,12 @@ export default function Page({ data:{global, page} }) {
           </div>
 
         </m.div>
+
+        <Footer global={global} />
         
       </LazyMotion>
 
-      <Footer global={global} />
+      
 
     </Layout>
   )

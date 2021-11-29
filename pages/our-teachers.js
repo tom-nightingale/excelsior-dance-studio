@@ -68,11 +68,11 @@ export default function Page({ data:{global, home, teachers} }) {
           </div>
 
         </m.div>
+
+        <Footer global={global} />
         
       </LazyMotion>
-
-      <Footer global={global} />
-
+      
     </Layout>
   )
 }
