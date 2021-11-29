@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react'
 import sanity from "@/lib/sanity"
 import BlockContent from '@sanity/block-content-to-react'
 import { useNextSanityImage } from 'next-sanity-image';
@@ -9,17 +10,20 @@ import Layout from '@/components/layout'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
-import Carousel from '@/components/carousel'
 import FancyLink from '@/components/fancyLink'
 import { fade, heroSubheading, heroHeading, heroButton} from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m, useAnimation } from 'framer-motion'
+
+import { FiChevronDown } from "react-icons/fi";
 
 export default function Page({ data:{global, page, classes} }) {
 
   const controls = useAnimation();
   const { ref, inView } = useInView();
 
-  useEffect(() => {
+  const myRef = useRef(null)
+  
+useEffect(() => {
     if (inView) {
       controls.start('enter');
     }
@@ -28,23 +32,14 @@ export default function Page({ data:{global, page, classes} }) {
     }
   }, [controls, inView]);
 
-  // select change to generate content
-  useEffect(() => {
+  const [isSelectorOpen, setSelectorOpen] = useState(false);
+  const [CurrentClass, setCurrentClass] = useState('ballet');
 
-    const classSelector = document.querySelector('#class-selector');
-    const allClasses = document.querySelectorAll('.class-item');
-
-    classSelector.addEventListener('change', function() {
-      let newClass = classSelector.value;
-      allClasses.forEach((item, index) => {
-        item.classList.add('hidden');
-      });
-      console.log('.'+newClass);
-      document.querySelector('.'+newClass).classList.remove('hidden');
-      document.querySelector('.'+newClass).classList.add('block');
-    });
-    
-  });
+  const handleToggle = (slug) => {
+    setCurrentClass(slug);
+    setSelectorOpen(false);
+    myRef.current.scrollIntoView() 
+  };
     
 
   return (
@@ -69,7 +64,7 @@ export default function Page({ data:{global, page, classes} }) {
       
       <LazyMotion features={domAnimation}>
 
-        <div className="relative bg-primary h-screen xl:max-h-[850px] landscape:min-h-[450px]">
+        <div className="relative bg-primary h-screen xl:max-h-[800px] landscape:min-h-[450px]">
 
           <div className="absolute inset-0 z-0">
               <img className="object-cover object-center w-full h-full" src={page.heroImage.asset.url} alt="Excelsior Dance Studio" />
@@ -88,37 +83,55 @@ export default function Page({ data:{global, page, classes} }) {
             </div>
 
             <m.div className="flex flex-col items-center justify-center w-full mt-8 md:flex-row md:flex-wrap" variants={heroButton} initial="initial" animate="enter" exit="exit">
-                <form action="" className="flex justify-center w-full mx-auto max-w-screen-xs">
-                    <label htmlFor="" className="w-full">
-                        <select defaultValue={'DEFAULT'} name="" id="class-selector" className="w-full p-3 font-bold text-white uppercase bg-transparent border-2 border-white rounded-full md:px-5 md:py-4">
-                            <option value="DEFAULT" disabled className="text-black bg-primary">Select a class...</option>
-                            {classes.map((item, index) => { 
-                                return(                  
-                                  <option className="block p-4 text-white border-none bg-primary-dark" key={index} value={item.slug.current}>{item.title}</option>
-                                )
-                            })}
-                        </select>
-                    </label>
-                </form>
+
+                <div className="relative flex flex-col justify-center w-full mx-auto max-w-screen-xs">
+                  <p onClick={() => setSelectorOpen(!isSelectorOpen)} className="w-full p-3 font-bold text-white uppercase bg-transparent border-2 border-white rounded-full cursor-pointer md:px-5 md:py-4">{CurrentClass} <span className="absolute text-white transform -translate-y-1/2 top-1/2 right-4"><FiChevronDown /></span></p>
+
+                  <div className={`absolute left-0 w-full p-3 bg-white rounded-lg shadow-lg top-16 ${isSelectorOpen ? 'block' : 'hidden'}`}>
+                    {classes.map((item, index) => { 
+                        return(
+                          <p className="block p-3 text-sm rounded-lg cursor-pointer text-primary-dark hover:bg-primary-light/20" key={index} onClick={() => handleToggle(item.slug.current)}> {item.title}</p>
+                        )
+                    })}
+                  </div>
+                </div>
             </m.div>
             
           </div>
           
         </div>
         
+        <div className="bg-gradient-to-r from-primary via-primary-dark to-primary">
+          <div className="max-w-screen-lg py-16 mx-auto md:py-24" ref={myRef}>
+            <Container>
+              {classes.map((item, index) => { 
+                  return(
+                    <div className={`class-item rounded-sm shadow-lg flex-col sm:flex-row flex-wrap bg-white ${CurrentClass === item.slug.current ? 'flex' : 'hidden'}`} key={index}>
+                      
+                      <div className="relative bg-gray-200 sm:w-1/2">
+                        <img className="" src={item.classImage.asset.url} alt={item.title} />
+                      </div>
 
-        <div className="">
-          <Container>
+                      <div className="p-8 lg:p-12 sm:w-1/2">
+                        
+                        <h2>{item.title}</h2>
+                        
+                        <div className="content">
+                          <BlockContent serializers={{ container: ({ children }) => children }} blocks={item.content} />
+                        </div>
 
-            {classes.map((item, index) => { 
-                return(                  
-                  <div id={item.slug.current} className={`class-item ${item.slug.current}`} key={index}>
-                    {item.title}
-                  </div>
-                )
-            })}
-            
-          </Container>
+                        <p className="mt-4"><span className="font-bold">Teachers:</span> Angela</p>
+
+                        <p className="mt-4"><span className="font-bold">Class days:</span>
+                        <span className="inline-block px-3 py-2 m-1 text-xs font-bold tracking-wider text-white uppercase rounded-lg bg-primary-light">Monday</span></p>
+                        
+                      </div>
+
+                    </div>
+                  )
+              })}            
+            </Container>
+          </div>
         </div>
         
 
