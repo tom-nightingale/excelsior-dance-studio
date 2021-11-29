@@ -16,8 +16,7 @@ export default function Page({ page }) {
     return (
 
         <Layout>
-          {page.title}
-          {page.contentHeading}
+          
         </Layout>
 
     )
