@@ -85,7 +85,7 @@ useEffect(() => {
             <m.div className="flex flex-col items-center justify-center w-full mt-8 md:flex-row md:flex-wrap" variants={heroButton} initial="initial" animate="enter" exit="exit">
 
                 <div className="relative flex flex-col justify-center w-full mx-auto max-w-screen-xs">
-                  <p onClick={() => setSelectorOpen(!isSelectorOpen)} className="w-full p-3 font-bold text-white uppercase bg-transparent border-2 border-white rounded-full cursor-pointer md:px-5 md:py-4">{CurrentClass} <span className="absolute text-white transform -translate-y-1/2 top-1/2 right-4"><FiChevronDown /></span></p>
+                  <p onClick={() => setSelectorOpen(!isSelectorOpen)} className="w-full p-3 font-black text-white uppercase bg-transparent border-2 border-white rounded-full cursor-pointer md:px-5 md:py-4">{CurrentClass} <span className="absolute text-white transform -translate-y-1/2 top-1/2 right-4"><FiChevronDown /></span></p>
 
                   <div className={`absolute left-0 w-full p-3 bg-white rounded-lg shadow-lg top-16 ${isSelectorOpen ? 'block' : 'hidden'}`}>
                     {classes.map((item, index) => { 
@@ -120,10 +120,10 @@ useEffect(() => {
                           <BlockContent serializers={{ container: ({ children }) => children }} blocks={item.content} />
                         </div>
 
-                        <p className="mt-4"><span className="font-bold">Teachers:</span> Angela</p>
+                        <p className="mt-4"><span className="font-black">Teachers:</span> Angela</p>
 
-                        <p className="mt-4"><span className="font-bold">Class days:</span>
-                        <span className="inline-block px-3 py-2 m-1 text-xs font-bold tracking-wider text-white uppercase rounded-lg bg-primary-light">Monday</span></p>
+                        <p className="mt-4"><span className="font-black">Class days:</span>
+                        <span className="inline-block px-3 py-2 m-1 text-xs font-black tracking-wider text-white uppercase rounded-lg bg-primary-light">Monday</span></p>
                         
                       </div>
 

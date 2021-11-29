@@ -55,7 +55,7 @@ export default function Page({ data:{global, page} }) {
 
                  <Tabs>
 
-                  <TabList className="flex flex-wrap justify-center mb-8 text-lg font-bold text-white uppercase">
+                  <TabList className="flex flex-wrap justify-center mb-8 text-lg font-black text-white uppercase">
                     <Tab className="px-5 py-3 mx-4 cursor-pointer btn btn--outline hover:border-white">Images</Tab>
                     <Tab className="px-5 py-3 mx-4 cursor-pointer btn btn--outline hover:border-white">Videos</Tab>    
                   </TabList>

@@ -74,7 +74,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
             </div>
 
             <m.div className="flex flex-col items-center justify-center w-full mt-8 md:flex-row md:flex-wrap" variants={heroButton} initial="initial" animate="enter" exit="exit">
-              <FancyLink destination="/class-timetable" a11yText="View class information" label="Our Classes" extraClasses="btn mx-auto md:mx-4 mb-4 md:mb-0 text-primary" />
+              <FancyLink destination="/classes" a11yText="View class information" label="Our Classes" extraClasses="btn mx-auto md:mx-4 mb-4 md:mb-0 text-primary" />
               <FancyLink destination="/our-teachers" a11yText="View teacher profiles information" label="Our Teachers" extraClasses="btn btn--outline mx-auto md:mx-4" />
             </m.div>
             
