@@ -9,7 +9,7 @@ import Link from 'next/link';
 export default function Header({ global, isHome }) {
   
   const router = useRouter();
-  // let currentPath = router.pathname;
+  let currentPath = router.pathname;
 
   const [open, setOpen] = useState(false);
 
@@ -65,7 +65,7 @@ export default function Header({ global, isHome }) {
             {navItems.map((item, index) => {
               return(
                 <li key={index} className="">
-                  <FancyLink destination={item.url} a11yText={`Go to the ${item.name} page`} label={item.name} extraClasses="inline-block py-2 xl:py-4 tracking-wider uppercase" />
+                  <FancyLink destination={item.url} a11yText={`Go to the ${item.name} page`} label={item.name} extraClasses={`inline-block py-2 xl:py-4 tracking-wider uppercase ${item.url === currentPath ? 'text-primary-light' : ''}`} />
                 </li>
               )
             })}

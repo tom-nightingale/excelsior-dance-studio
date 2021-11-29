@@ -53,7 +53,7 @@ export default function Page({ data:{global, page} }) {
                 <h1 className="text-center text-white">{page.title}</h1>
 
                 <div className="flex-wrap justify-center xs:flex">
-                  Contact information
+                  Unity
                 </div>              
             
             </Container>
@@ -80,7 +80,7 @@ const query = `{
     instagramUrl,
     facebookUrl,
   },
-  "page": *[_type == "contact"][0] {
+  "page": *[_type == "unity"][0] {
     title,
     contentHeading,
     content,

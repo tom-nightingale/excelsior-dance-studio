@@ -40,29 +40,32 @@ export default function Page({ data:{global, home, teachers} }) {
           initial="initial"
           animate="enter"
           exit="exit"
-          className="py-48 md:py-56"
+          className=""
         >
+          <div className="py-48 bg-gradient-to-b from-primary to-primary-dark md:py-56">
 
-          <Container>
+            <Container>
 
-              <h1 className="text-center">Our Teachers</h1>
+                <h1 className="text-center text-white">Our Teachers</h1>
 
-              <div className="flex-wrap justify-center xs:flex">
-                {teachers.map((teacher, index) => {
-                  return (
-                    <Card 
-                      key={index}
-                      containerClasses="w-full xs:w-1/2 md:w-1/3 p-4 xl:w-1/4 3xl:w-1/5"
-                      cardClasses="shadow-lg p-4 rounded-md"
-                      image={teacher.profilePhoto}
-                      name={teacher.name}
-                      position={teacher.position} 
-                    />
-                  )
-                })}
-              </div>              
-           
-          </Container>
+                <div className="flex-wrap justify-center xs:flex">
+                  {teachers.map((teacher, index) => {
+                    return (
+                      <Card 
+                        key={index}
+                        containerClasses="w-full xs:w-1/2 md:w-1/3 p-4 xl:w-1/4 3xl:w-1/5"
+                        cardClasses="shadow-lg p-4 rounded-md bg-white md:p-8"
+                        image={teacher.profilePhoto}
+                        name={teacher.name}
+                        position={teacher.position} 
+                      />
+                    )
+                  })}
+                </div>              
+            
+            </Container>
+
+          </div>
 
         </m.div>
         

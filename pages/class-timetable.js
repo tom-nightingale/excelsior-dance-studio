@@ -11,13 +11,8 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
-export default function Home({ data:{global, home, classes} }) {
-
-  // const heroBackgroundProps = useNextSanityImage(
-	// 	sanity,
-	// 	home.heroBackgroundImage
-	// );
-
+export default function Page({ data:{global, home, classes} }) {
+  
   return (
     <Layout>
       
@@ -44,7 +39,7 @@ export default function Home({ data:{global, home, classes} }) {
           initial="initial"
           animate="enter"
           exit="exit"
-          className="mb-12 md:mb-16 xl:mb-24"
+          className="py-48 md:py-56"
         >
 
           <Container>

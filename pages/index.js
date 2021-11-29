@@ -112,15 +112,6 @@ export default function Home({ data:{global, home, teachers, classes} }) {
 
             <div className="w-10/12 py-8 ml-auto bg-white md:w-11/12">
               <Carousel items={teachers} />
-              {/* {teachers.map((teacher, index) => {
-                return (
-                  <div className="p-8" key={index}>
-                    <img className="mb-8" src={teacher.profilePhoto.asset.url} alt={teacher.name} />
-                    <p className="text-lg font-black leading-snug tracking-wider uppercase">{teacher.name}</p>
-                    <p>{teacher.position}</p>
-                  </div>
-                )
-              })} */}
             </div>
             
           </div>
@@ -137,12 +128,11 @@ export default function Home({ data:{global, home, teachers, classes} }) {
 
             <div className="flex flex-wrap w-10/12 p-4 bg-white xl:p-8 md:w-11/12">
               {classes.map((item, index) => {
-                console.log(item.slug.current);
                 return (
                   <div className="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/5" key={index}>
-                    <div className="relative flex flex-wrap w-full bg-primary-dark min-h-[200px] overflow-hidden">
-                      <img className="absolute inset-0 object-cover object-center w-full h-full" src={item.classImage.asset.url} alt={item.className} />
-                      <p className="m-auto text-lg font-black tracking-wider text-white uppercase filter drop-shadow-lg">{item.className}</p>
+                    <div className="relative flex flex-wrap w-full bg-primary-dark min-h-[200px] sm:min-h-[250px] overflow-hidden">
+                      <img className="absolute inset-0 z-0 object-cover object-center w-full h-full" src={item.classImage.asset.url} alt={item.title} />
+                      <p className="relative z-10 m-auto text-lg font-black tracking-wider text-white uppercase filter drop-shadow-lg">{item.title}</p>
                     </div>
                   </div>
                 )

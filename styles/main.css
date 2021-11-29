@@ -66,3 +66,12 @@ body {
 .carousel-container::-webkit-scrollbar { /* WebKit */
   display: none;
 }
+
+
+.react-tabs li { 
+  @apply opacity-25;
+}
+
+.react-tabs .react-tabs__tab--selected {
+  @apply border-white opacity-100;
+}
