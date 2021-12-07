@@ -131,8 +131,8 @@ export default function Home({ data:{global, home, teachers, classes} }) {
               {classes.map((item, index) => {
                 return (
                   <div className="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/5" key={index}>
-                    <div className="relative flex flex-wrap w-full bg-primary-dark min-h-[200px] sm:min-h-[250px] overflow-hidden">
-                      <img className="absolute inset-0 z-0 object-cover object-center w-full h-full" src={item.classImage.asset.url} alt={item.title} />
+                    <div className="relative flex flex-wrap w-full min-h-[200px] bg-primary-dark sm:min-h-[250px] overflow-hidden">
+                      <img className="absolute inset-0 z-0 object-cover object-center w-full h-full opacity-75" src={item.classImage.asset.url} alt={item.title} />
                       <p className="relative z-10 m-auto text-lg font-black tracking-wider text-white uppercase filter drop-shadow-lg">{item.title}</p>
                     </div>
                   </div>
@@ -159,8 +159,8 @@ export default function Home({ data:{global, home, teachers, classes} }) {
               {/* <Carousel items="" /> */}
 
               <div className="flex flex-wrap items-center justify-center">
-                <FancyLink destination="/photo-gallery" a11yText="View photo gallery" label="View Photo Gallery" extraClasses="btn mx-auto md:mx-4 mb-4 md:mb-0 text-primary" />
-                <FancyLink destination="/video-gallery" a11yText="View video gallery" label="View Video Gallery" extraClasses="btn btn--outline mx-auto md:mx-4" />
+                <FancyLink destination="/gallery" a11yText="View photo gallery" label="View Photo Gallery" extraClasses="btn mx-auto md:mx-4 mb-4 md:mb-0 text-primary" />
+                <FancyLink destination="/gallery" a11yText="View video gallery" label="View Video Gallery" extraClasses="btn btn--outline mx-auto md:mx-4" />
               </div>
 
             </div>
@@ -174,7 +174,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
             <div className="flex flex-wrap w-full">
               
               <div className="flex flex-col items-center w-full p-8 text-white xl:p-20 lg:w-1/2">
-                <img className="block w-72" src="https://placedog.net/500" alt="Unity logo" />
+                <img className="block w-72" src="images/unity.jpg" alt="Unity logo" />
                 <p className="max-w-screen-md py-8 mx-auto text-center lg:py-12">Unity is our competitive freestyle dance school that operates from various venues across Nottinghamshire. Click below and head to our Unity Page to find out more.</p>
                 <FancyLink destination="/unity" a11yText="Go to Unity page" label="Learn more" extraClasses="inline-block mx-auto btn btn--outline mx-auto md:mx-4" />
               </div>
@@ -234,7 +234,7 @@ const query = `{
       }
     }
   },
-  "teachers": *[_type == "teacher"] {
+  "teachers": *[_type == "teacher"] | order(name asc){
     name,
     position,
     profilePhoto {

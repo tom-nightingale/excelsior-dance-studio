@@ -11,6 +11,7 @@ import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
 import FancyLink from '@/components/fancyLink'
+import ContactForm from '@/components/contactForm'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
@@ -134,6 +135,33 @@ export default function Page({ data:{global, page} }) {
           </div>
 
         </m.div>
+
+        <div className="bg-primary">
+          <Container>
+            <div className="flex flex-wrap w-full">
+              
+              <div className="flex flex-col items-center w-full p-8 text-white xl:p-20 lg:w-1/2">
+                <img className="block w-72" src="images/unity.jpg" alt="Unity logo" />
+                <p className="max-w-screen-md py-8 mx-auto text-center lg:py-12">Unity is our competitive freestyle dance school that operates from various venues across Nottinghamshire. Click below and head to our Unity Page to find out more.</p>
+                <FancyLink destination="/unity" a11yText="Go to Unity page" label="Learn more" extraClasses="inline-block mx-auto btn btn--outline mx-auto md:mx-4" />
+              </div>
+
+              <div className="w-full p-8 text-center text-white lg:w-1/2 xl:p-20">
+                <h2>Get in touch</h2>
+                <p className="max-w-screen-sm py-4 mx-auto mb-8">If you have any questions then why not drop us a message below and a member of the team will be in touch as soon as possible</p>
+                <ContactForm />
+              </div>
+              
+            </div>
+          </Container>
+        </div>
+
+        <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
+          <Container>
+            <p>Give us a call today to book or to find out more</p>
+            <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
+          </Container>
+        </div>
 
         <Footer global={global} />
         

@@ -13,6 +13,8 @@ import { NextSeo } from 'next-seo'
 
 export default function Page({ page }) {
 
+  console.log(page);
+
     return (
 
         <Layout>

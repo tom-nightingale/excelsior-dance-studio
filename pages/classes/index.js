@@ -109,7 +109,7 @@ useEffect(() => {
                     <div className={`class-item rounded-sm shadow-lg flex-col sm:flex-row flex-wrap bg-white ${CurrentClass === item.slug.current ? 'flex' : 'hidden'}`} key={index}>
                       
                       <div className="relative bg-gray-200 sm:w-1/2">
-                        <img className="" src={item.classImage.asset.url} alt={item.title} />
+                        <img className="absolute top-0 left-0 object-cover w-full h-full" src={item.classImage.asset.url} alt={item.title} />
                       </div>
 
                       <div className="p-8 lg:p-12 sm:w-1/2">
