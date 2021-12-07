@@ -85,7 +85,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
         
         <div className="bg-gradient-to-r from-primary via-primary-dark to-primary">
 
-            <m.article ref={ref} variants={fade} initial="initial" animate={controls} exit="exit" className="p-8 text-center text-white md:p-12 lg:p-20">
+            <m.article ref={ref} variants={fade} initial="initial" animate={controls} exit="exit" className="p-8 py-16 text-center text-white md:p-12 lg:p-20">
 
               <h1>{home.aboutContentHeading}</h1>
 
@@ -93,13 +93,13 @@ export default function Home({ data:{global, home, teachers, classes} }) {
                 <BlockContent serializers={{ container: ({ children }) => children }} blocks={home.aboutContent} />
               </div>
 
-              <FancyLink destination="/class-timetable" a11yText="View class information" label="Our Classes" extraClasses="btn mx-auto mt-12 md:mx-4 mb-4 md:mb-0 text-primary" />
+              <FancyLink destination="/class-timetable" a11yText="View class information" label="Our Classes" extraClasses="btn mx-auto mt-8 md:mx-4 mb-4 md:mb-0 text-primary" />
 
             </m.article>
           
         </div>
 
-        <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-primary md:py-p-12 lg:py-20">
+        <div className="py-16 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-primary md:py-16 lg:py-20">
           <Container>
             <p>{home.inspirationalQuote} <span className="block text-primary-light">{home.inspirationalQuoteHighlight}</span></p>
           </Container>
@@ -119,7 +119,7 @@ export default function Home({ data:{global, home, teachers, classes} }) {
           
         </div>
 
-        <div className="bg-primary-dark">
+        <div className="py-16 bg-primary-dark">
             <img className="mx-auto" src={home.pageImage.asset.url} alt={home.title} />
         </div>
         
@@ -152,9 +152,9 @@ export default function Home({ data:{global, home, teachers, classes} }) {
 
           <Container>
 
-            <div className="p-8 text-center text-white md:p-12 lg:p-20">
+            <div className="py-16 text-center text-white md:p-12 lg:p-20">
 
-              <h2>The Excelsior Gallery</h2>
+              <h2>Excelsior Gallery</h2>
 
               {/* <Carousel items="" /> */}
 

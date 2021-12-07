@@ -45,7 +45,7 @@ export default function Page({ data:{global, home, classes} }) {
           className=""
         >
 
-          <div className="py-48 bg-gradient-to-b from-primary to-primary-dark md:py-56">
+          <div className="pt-48 pb-16 md:pb-36 bg-gradient-to-b from-primary to-primary-dark md:pt-56">
 
             <Container>
 

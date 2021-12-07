@@ -7,7 +7,7 @@ export default function Footer({ global }) {
   return (
     <footer>
 
-      <div className="py-12 bg-primary">
+      <div className="py-16 bg-primary">
 
         <Container>
 
