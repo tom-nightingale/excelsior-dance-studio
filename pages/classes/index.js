@@ -10,6 +10,7 @@ import Layout from '@/components/layout'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import Container from '@/components/container'
+import ContactForm from '@/components/contactForm'
 import FancyLink from '@/components/fancyLink'
 import { fade, heroSubheading, heroHeading, heroButton} from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m, useAnimation } from 'framer-motion'
@@ -140,7 +141,7 @@ useEffect(() => {
             <div className="flex flex-wrap w-full">
               
               <div className="flex flex-col items-center w-full p-8 text-white xl:p-20 lg:w-1/2">
-                <img className="block w-72" src="https://placedog.net/500" alt="Unity logo" />
+                <img className="block w-72" src="images/unity.jpg" alt="Unity logo" />
                 <p className="max-w-screen-md py-8 mx-auto text-center lg:py-12">Unity is our competitive freestyle dance school that operates from various venues across Nottinghamshire. Click below and head to our Unity Page to find out more.</p>
                 <FancyLink destination="/unity" a11yText="Go to Unity page" label="Learn more" extraClasses="inline-block mx-auto btn btn--outline mx-auto md:mx-4" />
               </div>
@@ -148,24 +149,7 @@ useEffect(() => {
               <div className="w-full p-8 text-center text-white lg:w-1/2 xl:p-20">
                 <h2>Get in touch</h2>
                 <p className="max-w-screen-sm py-4 mx-auto mb-8">If you have any questions then why not drop us a message below and a member of the team will be in touch as soon as possible</p>
-                <form id="form" action="https://formspree.io/f/YOURAPI" method="POST" className="flex flex-wrap -m-1 overflow-x-hidden text-primary-dark">
-                  <label className="w-full px-2 py-1 md:w-1/2">
-                    <input required type="text" className="w-full" name="name" placeholder="Name" />
-                  </label>
-                  <label className="w-full px-2 py-1 md:w-1/2">
-                    <input required type="tel" className="w-full" name="telephone" placeholder="Telephone" />
-                  </label>
-                  <label className="w-full p-1">
-                    <input required type="email" className="w-full" name="email" placeholder="Email" />
-                  </label>
-                  <label className="w-full p-1">
-                    <textarea required placeholder="Your message" name="message" className="w-full"></textarea>
-                  </label>
-                  <input type="text" name="_gotcha" className="hidden" />
-                  <div className="w-full p-1">
-                    <input type="submit" className="mx-auto mb-4 btn md:mx-4 md:mb-0 text-primary" value="Send Enquiry" />
-                  </div>
-                </form>
+                <ContactForm />
               </div>
               
             </div>

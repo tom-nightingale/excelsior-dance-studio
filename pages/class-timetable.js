@@ -14,7 +14,7 @@ import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
-export default function Page({ data:{global, home, classes} }) {
+export default function Page({ data:{global, home, timetable} }) {
   
   return (
     <Layout>
@@ -54,98 +54,44 @@ export default function Page({ data:{global, home, classes} }) {
                  <Tabs>
 
                   <TabList className="flex flex-wrap justify-center max-w-screen-xl mx-auto mb-16 text-lg font-black text-white uppercase">
-                    <Tab className="w-1/2 p-2 sm:w-1/3 md:w-1/4 lg:w-1/6"><button className="block w-full px-5 py-3 text-sm text-center cursor-pointer sm:text-lg btn btn--outline hover:border-white">Monday</button></Tab>
-                    <Tab className="w-1/2 p-2 sm:w-1/3 md:w-1/4 lg:w-1/6"><button className="block w-full px-5 py-3 text-sm text-center cursor-pointer sm:text-lg btn btn--outline hover:border-white">Tuesday</button></Tab>    
-                    <Tab className="w-1/2 p-2 sm:w-1/3 md:w-1/4 lg:w-1/6"><button className="block w-full px-5 py-3 text-sm text-center cursor-pointer sm:text-lg btn btn--outline hover:border-white">Wednesday</button></Tab>    
-                    <Tab className="w-1/2 p-2 sm:w-1/3 md:w-1/4 lg:w-1/6"><button className="block w-full px-5 py-3 text-sm text-center cursor-pointer sm:text-lg btn btn--outline hover:border-white">Thursday</button></Tab>    
-                    <Tab className="w-1/2 p-2 sm:w-1/3 md:w-1/4 lg:w-1/6"><button className="block w-full px-5 py-3 text-sm text-center cursor-pointer sm:text-lg btn btn--outline hover:border-white">Friday</button></Tab>    
-                    <Tab className="w-1/2 p-2 sm:w-1/3 md:w-1/4 lg:w-1/6"><button className="block w-full px-5 py-3 text-sm text-center cursor-pointer sm:text-lg btn btn--outline hover:border-white">Saturday</button></Tab>    
+                    {timetable.map((day, index) => {
+                      return(
+                        day.timetable && day.timetable.length > 0 && (
+                          <Tab className="w-1/2 p-2 sm:w-1/3 md:w-1/4 lg:w-1/6" key={index}><button className="block w-full px-5 py-3 text-sm text-center cursor-pointer sm:text-lg btn btn--outline hover:border-white">{day.title}</button></Tab>
+                        )
+                      )                      
+                    })}
                   </TabList>
 
-                  <TabPanel className="max-w-screen-lg mx-auto text-primary">
-                    
-                    <div className="p-8 text-sm bg-white rounded-md lg:p-16">
-
-                      <h2 className="mb-4">Monday</h2>
-
-                      <div className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
-                        <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> 16:45 - 17:20</div>
-                        <div className="w-2/5 md:w-3/5">
-                          <p className="font-black tracking-wider uppercase">Rock 'n' Roll</p>
-                          <p className="text-xs">Description goes here</p>
+                  {timetable.map((day, index) => {
+                    return(
+                      <TabPanel key={index} className="max-w-screen-lg mx-auto text-primary">                    
+                        <div className="p-8 text-sm bg-white rounded-md lg:p-16">
+                          <h2 className="mb-4">{day.title}</h2>
+                          {day.timetable && day.timetable.length > 0 &&
+                            day.timetable.map((item, index) => {
+                              return(
+                                <div key={index} className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
+                                  <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> {item.startsAt} - {item.finishesAt}</div>
+                                  <div className="w-2/5 md:w-3/5">
+                                    <p className="font-black tracking-wider uppercase">{item.title}</p>
+                                    {item.description &&
+                                      <p className="text-xs">{item.description}</p>
+                                    }
+                                  </div>
+                                  {item.price && 
+                                    <div className="w-1/5 md:w-1/5">{item.price}</div>
+                                  }
+                                </div>
+                              )
+                            })
+                          }
+                          <p className="p-4 mt-8 text-xs font-black tracking-wider text-center text-white uppercase rounded-md bg-gradient-to-r from-primary-dark via-primary to-primary-dark">Private lessons are available in 20 minute slots on request</p>                            
                         </div>
-                        <div className="w-1/5 md:w-1/5">£3.50</div>
-                      </div>
-
-                      <div className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
-                        <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> 17:20 - 18:00</div>
-                         <div className="w-2/5 md:w-3/5">
-                          <p className="font-black tracking-wider uppercase">Junior Singing</p>
-                          <p className="text-xs">Description goes here</p>
-                        </div>
-                        <div className="w-1/5">£5.00*</div>
-                      </div>
-
-                      <div className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
-                        <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> 17:20 - 18:00</div>
-                         <div className="w-2/5 md:w-3/5">
-                          <p className="font-black tracking-wider uppercase">Senior Latin</p>
-                          <p className="text-xs">Description goes here</p>
-                        </div>
-                        <div className="w-1/5">£4.00</div>
-                      </div>
-
-                      <div className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
-                        <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> 18:00 - 18:40</div>
-                         <div className="w-2/5 md:w-3/5">
-                          <p className="font-black tracking-wider uppercase">Musical Theatre</p>
-                          <p className="text-xs">Description goes here</p>
-                        </div>
-                        <div className="w-1/5">£3.50*</div>
-                      </div>
-
-                      <div className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
-                        <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> 18:40 - 19:20</div>
-                         <div className="w-2/5 md:w-3/5">
-                          <p className="font-black tracking-wider uppercase">Junior Latin</p>
-                          <p className="text-xs">Description goes here</p>
-                        </div>
-                        <div className="w-1/5">£4.00</div>
-                      </div>
-
-                      <div className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
-                        <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> 19:00 - 19:40</div>
-                         <div className="w-2/5 md:w-3/5">
-                          <p className="font-black tracking-wider uppercase">Senior Singing</p>
-                          <p className="text-xs">Description goes here</p>
-                        </div>
-                        <div className="w-1/5">£5.00*</div>
-                      </div>
-
-                      <p className="p-4 mt-8 text-xs font-black tracking-wider text-center text-white uppercase rounded-md bg-gradient-to-r from-primary-dark via-primary to-primary-dark">* Supersaver! Musical Theatre and Singing for £7!</p>
-
-                    </div>
-                  </TabPanel>
+                      </TabPanel>
+                    )
+                  })}
                   
-                  <TabPanel className="mx-auto max-w-screen-2xl">
-                    Tuesday
-                  </TabPanel>
-
-                  <TabPanel className="mx-auto max-w-screen-2xl">
-                    Wednesday
-                  </TabPanel>
-
-                  <TabPanel className="mx-auto max-w-screen-2xl">
-                    Thursday
-                  </TabPanel>
-
-                  <TabPanel className="mx-auto max-w-screen-2xl">
-                    Friday
-                  </TabPanel>
-
-                  <TabPanel className="mx-auto max-w-screen-2xl">
-                    Saturday
-                  </TabPanel>
 
                 </Tabs>
                 
@@ -191,13 +137,9 @@ const query = `{
       }
     }
   },
-  "classes": *[_type == "class"] {
-    className,
-    contentHeading,
-    content,
-    classImage {
-      asset->
-    }
+  "timetable": *[_type == "timetable"] | order(_createdAt asc) {
+    title,
+    timetable
   }
 }`
 
