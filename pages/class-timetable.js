@@ -1,8 +1,9 @@
 import sanity from "@/lib/sanity"
-import BlockContent from '@sanity/block-content-to-react'
 import { useNextSanityImage } from 'next-sanity-image';
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import dynamic from 'next/dynamic'
+const Tabs = dynamic(import('react-tabs').then(mod => mod.Tabs), { ssr: false });
+import { Tab, TabList, TabPanel } from 'react-tabs';
 import { FiClock } from "react-icons/fi";
 
 import Layout from '@/components/layout'
@@ -65,30 +66,31 @@ export default function Page({ data:{global, home, timetable} }) {
 
                   {timetable.map((day, index) => {
                     return(
-                      <TabPanel key={index} className="max-w-screen-lg mx-auto text-primary">                    
-                        <div className="p-8 text-sm bg-white rounded-md lg:p-16">
-                          <h2 className="mb-4">{day.title}</h2>
-                          {day.timetable && day.timetable.length > 0 &&
-                            day.timetable.map((item, index) => {
-                              return(
-                                <div key={index} className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
-                                  <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> {item.startsAt} - {item.finishesAt}</div>
-                                  <div className="w-2/5 md:w-3/5">
-                                    <p className="font-black tracking-wider uppercase">{item.title}</p>
-                                    {item.description &&
-                                      <p className="text-xs">{item.description}</p>
-                                    }
-                                  </div>
-                                  {item.price && 
-                                    <div className="w-1/5 md:w-1/5">{item.price}</div>
-                                  }
-                                </div>
-                              )
-                            })
-                          }
-                          <p className="p-4 mt-8 text-xs font-black tracking-wider text-center text-white uppercase rounded-md bg-gradient-to-r from-primary-dark via-primary to-primary-dark">Private lessons are available in 20 minute slots on request</p>                            
-                        </div>
-                      </TabPanel>
+                      day.timetable && day.timetable.length > 0 && (
+                        <TabPanel key={index} className="max-w-screen-lg mx-auto text-primary">                    
+                          <div className="p-8 text-sm bg-white rounded-md lg:p-16">
+                            <h2 className="mb-4">{day.title}</h2>
+                              {day.timetable.map((item, index) => {
+                                  return(
+                                    <div key={index} className="flex flex-wrap items-start py-4 border-b border-gray-200 lg:py-4">
+                                      <div className="flex items-center w-2/5 md:w-1/5"><FiClock className="hidden mr-1 sm:block" /> {item.startsAt} - {item.finishesAt}</div>
+                                      <div className="w-2/5 md:w-3/5">
+                                        <p className="font-black tracking-wider uppercase">{item.title}</p>
+                                        {item.description &&
+                                          <p className="text-xs">{item.description}</p>
+                                        }
+                                      </div>
+                                      {item.price && 
+                                        <div className="w-1/5 md:w-1/5">{item.price}</div>
+                                      }
+                                    </div>
+                                  )
+                                })
+                              }
+                            <p className="p-4 mt-8 text-xs font-black tracking-wider text-center text-white uppercase rounded-md bg-gradient-to-r from-primary-dark via-primary to-primary-dark">Private lessons are available in 20 minute slots on request</p>                            
+                          </div>
+                        </TabPanel>
+                      )
                     )
                   })}
                   
