@@ -1,8 +1,5 @@
 import sanity from "@/lib/sanity"
-import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image'
-
-// import { SRLWrapper } from "simple-react-lightbox";
 
 import React, { useState } from 'react';
 import FsLightbox from 'fslightbox-react';
@@ -25,8 +22,6 @@ export default function Page({ data:{global, page} }) {
   page.images.forEach((image) => {
     galleryImages.push(image.asset.url);
   });
-
-  console.log(page.videos);
 
   const [visible, isVisible] = useState(false);
   const [slide, slideNumber] = useState(1);
