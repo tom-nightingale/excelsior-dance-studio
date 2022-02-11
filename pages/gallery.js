@@ -110,7 +110,6 @@ export default function Page({ data:{global, page} }) {
 
                         {page.videos.map((item, index) => {                          
                           const posterImage = item.replace('https://youtu.be/', '');
-                          console.log(posterImage);
                           return(
                             <div key={index} className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
                               <a className="relative block w-full h-40 cursor-pointer md:h-72" onClick={() => { showSlide(index + 1) } }>
