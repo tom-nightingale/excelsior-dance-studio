@@ -1,6 +1,6 @@
 import { navItems } from '@/lib/navItems';
-import Container from '@/components/container'
-import FancyLink from '@/components/fancyLink'
+import Container from '@/components/Container'
+import FancyLink from '@/components/FancyLink'
 import { FiInstagram, FiYoutube, FiFacebook } from "react-icons/fi";
 
 export default function Footer({ global }) {

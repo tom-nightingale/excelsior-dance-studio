@@ -6,12 +6,12 @@ import { NextSeo } from 'next-seo'
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from "react";
 
-import Layout from '@/components/layout'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Container from '@/components/container'
-import ContactForm from '@/components/contactForm'
-import FancyLink from '@/components/fancyLink'
+import Layout from '@/components/Layout'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Container from '@/components/Container'
+import ContactForm from '@/components/ContactForm'
+import FancyLink from '@/components/FancyLink'
 import { fade, heroSubheading, heroHeading, heroButton} from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m, useAnimation } from 'framer-motion'
 
@@ -60,114 +60,116 @@ useEffect(() => {
           ]
         }}
       />
-
-      <Header global={global} isHome />
       
       <LazyMotion features={domAnimation}>
-
-        <div className="relative bg-primary h-screen xl:max-h-[800px] landscape:min-h-[450px]">
-
-          <div className="absolute inset-0 z-0">
-              <img className="object-cover object-center w-full h-full" src={page.heroImage.asset.url} alt="Excelsior Dance Studio" />
-          </div>
+         
+        <m.div initial="initial" animate="enter" exit="exit" variants={fade}>
           
-          <div className="relative z-[1] h-full text-white flex flex-col items-center justify-center px-8 landscape:py-40">
-            
-            <div className="text-[4vw] md:text-[2vw] font-light text-center uppercase">
+          <Header global={global} isHome />
 
-              <p className="relative overflow-hidden">
-                <m.span className="block" variants={heroSubheading} initial="initial" animate="enter" exit="exit">{page.heroSubHeading}</m.span>
-              </p>
-              <p className="relative overflow-hidden">
-                <m.span className="block text-[8vw] md:text-[4vw] font-black leading-snug" variants={heroHeading} initial="initial" animate="enter" exit="exit">{page.heroHeading}</m.span>
-              </p>
+          <div className="relative bg-primary h-screen xl:max-h-[800px] landscape:min-h-[450px]">
+
+            <div className="absolute inset-0 z-0">
+                <img className="object-cover object-center w-full h-full" src={page.heroImage.asset.url} alt="Excelsior Dance Studio" />
             </div>
+            
+            <div className="relative z-[1] h-full text-white flex flex-col items-center justify-center px-8 landscape:py-40">
+              
+              <div className="text-[4vw] md:text-[2vw] font-light text-center uppercase">
 
-            <m.div className="flex flex-col items-center justify-center w-full mt-8 md:flex-row md:flex-wrap" variants={heroButton} initial="initial" animate="enter" exit="exit">
+                <p className="relative overflow-hidden">
+                  <m.span className="block" variants={heroSubheading} initial="initial" animate="enter" exit="exit">{page.heroSubHeading}</m.span>
+                </p>
+                <p className="relative overflow-hidden">
+                  <m.span className="block text-[8vw] md:text-[4vw] font-black leading-snug" variants={heroHeading} initial="initial" animate="enter" exit="exit">{page.heroHeading}</m.span>
+                </p>
+              </div>
 
-                <div className="relative flex flex-col justify-center w-full mx-auto max-w-screen-xs">
-                  <p onClick={() => setSelectorOpen(!isSelectorOpen)} className="w-full p-3 font-black text-white uppercase bg-transparent border-2 border-white rounded-full cursor-pointer md:px-5 md:py-4">{CurrentClass} <span className="absolute text-white transform -translate-y-1/2 top-1/2 right-4"><FiChevronDown /></span></p>
+              <m.div className="flex flex-col items-center justify-center w-full mt-8 md:flex-row md:flex-wrap" variants={heroButton} initial="initial" animate="enter" exit="exit">
 
-                  <div className={`absolute left-0 w-full p-3 bg-white rounded-lg shadow-lg top-16 ${isSelectorOpen ? 'block' : 'hidden'}`}>
-                    {classes.map((item, index) => { 
-                        return(
-                          <p className="block p-3 text-sm rounded-lg cursor-pointer text-primary-dark hover:bg-primary-light/20" key={index} onClick={() => handleToggle(item.slug.current)}> {item.title}</p>
-                        )
-                    })}
+                  <div className="relative flex flex-col justify-center w-full mx-auto max-w-screen-xs">
+                    <p onClick={() => setSelectorOpen(!isSelectorOpen)} className="w-full p-3 font-black text-white uppercase bg-transparent border-2 border-white rounded-full cursor-pointer md:px-5 md:py-4">{CurrentClass} <span className="absolute text-white transform -translate-y-1/2 top-1/2 right-4"><FiChevronDown /></span></p>
+
+                    <div className={`absolute left-0 w-full p-3 bg-white rounded-lg shadow-lg top-16 ${isSelectorOpen ? 'block' : 'hidden'}`}>
+                      {classes.map((item, index) => { 
+                          return(
+                            <p className="block p-3 text-sm rounded-lg cursor-pointer text-primary-dark hover:bg-primary-light/20" key={index} onClick={() => handleToggle(item.slug.current)}> {item.title}</p>
+                          )
+                      })}
+                    </div>
                   </div>
-                </div>
-            </m.div>
+              </m.div>
+              
+            </div>
             
           </div>
-          
-        </div>
         
-        <div className="bg-gradient-to-r from-primary via-primary-dark to-primary">
-          <div className="max-w-screen-lg py-16 mx-auto md:py-24" ref={myRef}>
-            <Container>
-              {classes.map((item, index) => { 
-                  return(
-                    <div className={`class-item rounded-sm shadow-lg flex-col sm:flex-row flex-wrap bg-white ${CurrentClass === item.slug.current ? 'flex' : 'hidden'}`} key={index}>
-                      
-                      <div className="relative bg-gray-200 sm:w-1/2">
-                        <img className="absolute top-0 left-0 object-cover w-full h-full" src={item.classImage.asset.url} alt={item.title} />
-                      </div>
-
-                      <div className="p-8 lg:p-12 sm:w-1/2">
+          <div className="bg-gradient-to-r from-primary via-primary-dark to-primary">
+            <div className="max-w-screen-lg py-16 mx-auto md:py-24" ref={myRef}>
+              <Container>
+                {classes.map((item, index) => { 
+                    return(
+                      <div className={`class-item rounded-sm shadow-lg flex-col sm:flex-row flex-wrap bg-white ${CurrentClass === item.slug.current ? 'flex' : 'hidden'}`} key={index}>
                         
-                        <h2>{item.title}</h2>
-                        
-                        <div className="content">
-                          <BlockContent serializers={{ container: ({ children }) => children }} blocks={item.content} />
+                        <div className="relative bg-gray-200 sm:w-1/2">
+                          <img className="absolute top-0 left-0 object-cover w-full h-full" src={item.classImage.asset.url} alt={item.title} />
                         </div>
 
-                        <p className="mt-4"><span className="font-black">Teachers:</span> Angela</p>
+                        <div className="p-8 lg:p-12 sm:w-1/2">
+                          
+                          <h2>{item.title}</h2>
+                          
+                          <div className="content">
+                            <BlockContent serializers={{ container: ({ children }) => children }} blocks={item.content} />
+                          </div>
 
-                        <p className="mt-4"><span className="font-black">Class days:</span>
-                        <span className="inline-block px-3 py-2 m-1 text-xs font-black tracking-wider text-white uppercase rounded-lg bg-primary-light">Monday</span></p>
-                        
+                          <p className="mt-4"><span className="font-black">Teachers:</span> Angela</p>
+
+                          <p className="mt-4"><span className="font-black">Class days:</span>
+                          <span className="inline-block px-3 py-2 m-1 text-xs font-black tracking-wider text-white uppercase rounded-lg bg-primary-light">Monday</span></p>
+                          
+                        </div>
+
                       </div>
+                    )
+                })}            
+              </Container>
+            </div>
+          </div>
+          
 
-                    </div>
-                  )
-              })}            
+          <div className="bg-primary">
+            <Container>
+              <div className="flex flex-wrap w-full">
+                
+                <div className="flex flex-col items-center w-full p-8 text-white xl:p-20 lg:w-1/2">
+                  <img className="block w-72" src="images/unity.jpg" alt="Unity logo" />
+                  <p className="max-w-screen-md py-8 mx-auto text-center lg:py-12">Unity is our competitive freestyle dance school that operates from various venues across Nottinghamshire. Click below and head to our Unity Page to find out more.</p>
+                  <FancyLink destination="/unity" a11yText="Go to Unity page" label="Learn more" extraClasses="inline-block mx-auto btn btn--outline mx-auto md:mx-4" />
+                </div>
+
+                <div className="w-full p-8 text-center text-white lg:w-1/2 xl:p-20">
+                  <h2>Get in touch</h2>
+                  <p className="max-w-screen-sm py-4 mx-auto mb-8">If you have any questions then why not drop us a message below and a member of the team will be in touch as soon as possible</p>
+                  <ContactForm />
+                </div>
+                
+              </div>
             </Container>
           </div>
-        </div>
-        
 
-        <div className="bg-primary">
-          <Container>
-            <div className="flex flex-wrap w-full">
-              
-              <div className="flex flex-col items-center w-full p-8 text-white xl:p-20 lg:w-1/2">
-                <img className="block w-72" src="images/unity.jpg" alt="Unity logo" />
-                <p className="max-w-screen-md py-8 mx-auto text-center lg:py-12">Unity is our competitive freestyle dance school that operates from various venues across Nottinghamshire. Click below and head to our Unity Page to find out more.</p>
-                <FancyLink destination="/unity" a11yText="Go to Unity page" label="Learn more" extraClasses="inline-block mx-auto btn btn--outline mx-auto md:mx-4" />
-              </div>
-
-              <div className="w-full p-8 text-center text-white lg:w-1/2 xl:p-20">
-                <h2>Get in touch</h2>
-                <p className="max-w-screen-sm py-4 mx-auto mb-8">If you have any questions then why not drop us a message below and a member of the team will be in touch as soon as possible</p>
-                <ContactForm />
-              </div>
-              
-            </div>
-          </Container>
-        </div>
-
-        <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
-          <Container>
-            <p>Give us a call today to book or to find out more</p>
-            <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
-          </Container>
-        </div>
+          <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
+            <Container>
+              <p>Give us a call today to book or to find out more</p>
+              <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
+            </Container>
+          </div>
 
         <Footer global={global} />
 
-      </LazyMotion>
+        </m.div>
 
-      
+      </LazyMotion>      
 
     </Layout>
   )

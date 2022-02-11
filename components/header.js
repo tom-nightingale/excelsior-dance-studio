@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { navItems } from '@/lib/navItems';
-import FancyLink from '@/components/fancyLink'
-import Container from '@/components/container'
+import FancyLink from '@/components/FancyLink'
+import Container from '@/components/Container'
 import { m, motion } from 'framer-motion';
 import Link from 'next/link';
 

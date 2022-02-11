@@ -6,11 +6,11 @@ const Tabs = dynamic(import('react-tabs').then(mod => mod.Tabs), { ssr: false })
 import { Tab, TabList, TabPanel } from 'react-tabs';
 import { FiClock } from "react-icons/fi";
 
-import Layout from '@/components/layout'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Container from '@/components/container'
-import FancyLink from '@/components/fancyLink'
+import Layout from '@/components/Layout'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Container from '@/components/Container'
+import FancyLink from '@/components/FancyLink'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
@@ -35,16 +35,12 @@ export default function Page({ data:{global, home, timetable} }) {
         }}
       />
 
-      <Header global={global}/>
       
       <LazyMotion features={domAnimation}>
 
-        <m.div
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          className=""
-        >
+        <m.div initial="initial" animate="enter" exit="exit" variants={fade}>
+
+          <Header global={global}/>
 
           <div className="pt-48 pb-16 md:pb-36 bg-gradient-to-b from-primary to-primary-dark md:pt-56">
 
@@ -100,15 +96,13 @@ export default function Page({ data:{global, home, timetable} }) {
             </Container>
 
           </div>
-
-        </m.div>
-
+          
         <Footer global={global} />
+
+      </m.div>
         
-      </LazyMotion>
-
-      
-
+    </LazyMotion>
+    
     </Layout>
   )
 }

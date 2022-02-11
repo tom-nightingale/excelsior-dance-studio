@@ -2,13 +2,13 @@ import sanity from "@/lib/sanity"
 import BlockContent from '@sanity/block-content-to-react'
 import { useNextSanityImage } from 'next-sanity-image';
 
-import Layout from '@/components/layout'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Container from '@/components/container'
-import FancyLink from '@/components/fancyLink'
+import Layout from '@/components/Layout'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Container from '@/components/Container'
+import FancyLink from '@/components/FancyLink'
 import { fade } from '@/helpers/transitions'
-import Card from '@/components/card'
+import Card from '@/components/Card'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
@@ -32,16 +32,12 @@ export default function Page({ data:{global, home, teachers} }) {
         }}
       />
 
-      <Header global={global}/>
-      
       <LazyMotion features={domAnimation}>
 
-        <m.div
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          className=""
-        >
+        <m.div initial="initial" animate="enter" exit="exit" variants={fade}>
+
+          <Header global={global}/>
+
           <div className="pt-48 pb-16 md:pb-36 bg-gradient-to-b from-primary to-primary-dark md:pt-56">
 
             <Container>
@@ -66,10 +62,9 @@ export default function Page({ data:{global, home, teachers} }) {
             </Container>
 
           </div>
+          <Footer global={global} />
 
         </m.div>
-
-        <Footer global={global} />
         
       </LazyMotion>
       

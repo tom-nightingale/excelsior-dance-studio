@@ -1,24 +1,40 @@
-import { useState } from 'react';
 import sanity from "@/lib/sanity"
-import BlockContent from '@sanity/block-content-to-react'
 import { useNextSanityImage } from 'next-sanity-image';
+import Image from 'next/image'
 
-import { SRLWrapper } from "simple-react-lightbox";
+// import { SRLWrapper } from "simple-react-lightbox";
+
+import React, { useState } from 'react';
+import FsLightbox from 'fslightbox-react';
+
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import Layout from '@/components/layout'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Container from '@/components/container'
-import FancyLink from '@/components/fancyLink'
-import ContactForm from '@/components/contactForm'
+import Layout from '@/components/Layout'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Container from '@/components/Container'
+import FancyLink from '@/components/FancyLink'
+import ContactForm from '@/components/ContactForm'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
 export default function Page({ data:{global, page} }) {
 
-  
+  const galleryImages = [];
+  page.images.forEach((image) => {
+    galleryImages.push(image.asset.url);
+  });
+
+  console.log(page.videos);
+
+  const [visible, isVisible] = useState(false);
+  const [slide, slideNumber] = useState(1);
+
+  const showSlide = slide => {
+    isVisible(!visible)
+    slideNumber(slide);
+  }
 
   return (
     <Layout>
@@ -38,16 +54,12 @@ export default function Page({ data:{global, page} }) {
         }}
       />
 
-      <Header global={global}/>
-      
       <LazyMotion features={domAnimation}>
+         
+        <m.div initial="initial" animate="enter" exit="exit" variants={fade}>
 
-        <m.div
-          initial="initial"
-          animate="enter"
-          exit="exit"
-          className=""
-        >
+          <Header global={global}/>
+      
           <div className="py-48 bg-gradient-to-b from-primary to-primary-dark md:py-56">
 
             <Container>
@@ -62,56 +74,33 @@ export default function Page({ data:{global, page} }) {
                   </TabList>
 
                   <TabPanel>
-                    
-                    <SRLWrapper>
 
                       <div className="flex flex-wrap justify-center mx-auto max-w-screen-2xl">
 
-                          <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                            <a href="https://placedog.net/500">
-                              <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                            </a>
-                          </div>
+                        {page.images.map((item, index) => {
+                          
+                          return(
+                            <div key={index} className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
+                              <a className="relative block h-40 cursor-pointer md:h-72" onClick={() => { showSlide(index + 1) } }>                                
+                                <Image
+                                  src={item.asset.url}
+                                  alt="Excelsior Studios"
+                                  layout="fill"
+                                  objectFit="cover"
+                                />
+                              </a>
+                            </div>
+                          )
+                        })}
 
-                          <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                            <a href="https://placedog.net/500">
-                              <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                            </a>
-                          </div>
-
-                          <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                            <a href="https://placedog.net/500">
-                              <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                            </a>
-                          </div>
-
-                          <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                            <a href="https://placedog.net/500">
-                              <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                            </a>
-                          </div>
-
-                          <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                            <a href="https://placedog.net/500">
-                              <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                            </a>
-                          </div>
-
-                          <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                            <a href="https://placedog.net/500">
-                              <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                            </a>
-                          </div>
-
-                          <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                            <a href="https://placedog.net/500">
-                              <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                            </a>
-                          </div>
+                        <FsLightbox
+                            toggler={visible}
+                            slide={slide}
+                            sources={galleryImages}
+                            type="image"
+                        />
                         
-                      </div>              
-                  
-                    </SRLWrapper>
+                      </div>             
 
                   </TabPanel>
 
@@ -119,11 +108,29 @@ export default function Page({ data:{global, page} }) {
 
                     <div className="flex flex-wrap justify-center mx-auto max-w-screen-2xl">
 
-                      <div className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                        <a href="https://www.youtube.com/watch?v=lmMU2RDmH-Y">
-                          <img className="object-cover w-full" src="https://placedog.net/500" alt="" />
-                        </a>
-                      </div>                          
+                        {page.videos.map((item, index) => {                          
+                          const posterImage = item.replace('https://youtu.be/', '');
+                          console.log(posterImage);
+                          return(
+                            <div key={index} className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
+                              <a className="relative block w-full h-40 cursor-pointer md:h-72" onClick={() => { showSlide(index + 1) } }>
+                                <Image
+                                  src={`https://img.youtube.com/vi/${posterImage}/0.jpg`}
+                                  alt="Excelsior Studios"
+                                  layout="fill"
+                                  objectFit="cover"
+                                />
+                              </a>
+                            </div>
+                          )
+                        })}
+
+                        <FsLightbox
+                            toggler={visible}
+                            slide={slide}
+                            sources={page.videos}
+                            type="youtube"
+                        />                      
                       
                     </div>
 
@@ -134,40 +141,38 @@ export default function Page({ data:{global, page} }) {
 
           </div>
 
+          <div className="bg-primary">
+            <Container>
+              <div className="flex flex-wrap w-full">
+                
+                <div className="flex flex-col items-center w-full p-8 text-white xl:p-20 lg:w-1/2">
+                  <img className="block w-72" src="images/unity.jpg" alt="Unity logo" />
+                  <p className="max-w-screen-md py-8 mx-auto text-center lg:py-12">Unity is our competitive freestyle dance school that operates from various venues across Nottinghamshire. Click below and head to our Unity Page to find out more.</p>
+                  <FancyLink destination="/unity" a11yText="Go to Unity page" label="Learn more" extraClasses="inline-block mx-auto btn btn--outline mx-auto md:mx-4" />
+                </div>
+
+                <div className="w-full p-8 text-center text-white lg:w-1/2 xl:p-20">
+                  <h2>Get in touch</h2>
+                  <p className="max-w-screen-sm py-4 mx-auto mb-8">If you have any questions then why not drop us a message below and a member of the team will be in touch as soon as possible</p>
+                  <ContactForm />
+                </div>
+                
+              </div>
+            </Container>
+          </div>
+
+          <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
+            <Container>
+              <p>Give us a call today to book or to find out more</p>
+              <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
+            </Container>
+          </div>
+
+          <Footer global={global} />
+
         </m.div>
-
-        <div className="bg-primary">
-          <Container>
-            <div className="flex flex-wrap w-full">
-              
-              <div className="flex flex-col items-center w-full p-8 text-white xl:p-20 lg:w-1/2">
-                <img className="block w-72" src="images/unity.jpg" alt="Unity logo" />
-                <p className="max-w-screen-md py-8 mx-auto text-center lg:py-12">Unity is our competitive freestyle dance school that operates from various venues across Nottinghamshire. Click below and head to our Unity Page to find out more.</p>
-                <FancyLink destination="/unity" a11yText="Go to Unity page" label="Learn more" extraClasses="inline-block mx-auto btn btn--outline mx-auto md:mx-4" />
-              </div>
-
-              <div className="w-full p-8 text-center text-white lg:w-1/2 xl:p-20">
-                <h2>Get in touch</h2>
-                <p className="max-w-screen-sm py-4 mx-auto mb-8">If you have any questions then why not drop us a message below and a member of the team will be in touch as soon as possible</p>
-                <ContactForm />
-              </div>
-              
-            </div>
-          </Container>
-        </div>
-
-        <div className="py-8 text-xl font-black tracking-wider text-center text-white uppercase 2xl:leading-relaxed lg:text-2xl xl:text-3xl bg-gradient-to-r from-primary via-primary-dark to-primary md:py-p-12 lg:py-20">
-          <Container>
-            <p>Give us a call today to book or to find out more</p>
-            <a href={`tel:${global.phoneNumber}`} className="inline-block transition duration-500 text-primary-light hover:text-white">{global.phoneNumber}</a>
-          </Container>
-        </div>
-
-        <Footer global={global} />
         
-      </LazyMotion>
-
-      
+      </LazyMotion>      
 
     </Layout>
   )
@@ -186,7 +191,10 @@ const query = `{
   "page": *[_type == "gallery"][0] {
     title,
     contentHeading,
-    content,
+    images[] {
+      asset ->
+    },
+    videos,
     seo {
       ...,
       shareGraphic {

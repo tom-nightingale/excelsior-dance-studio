@@ -2,11 +2,11 @@ import sanity from "@/lib/sanity"
 import BlockContent from '@sanity/block-content-to-react'
 import { useNextSanityImage } from 'next-sanity-image';
 
-import Layout from '@/components/layout'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import Container from '@/components/container'
-import FancyLink from '@/components/fancyLink'
+import Layout from '@/components/Layout'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import Container from '@/components/Container'
+import FancyLink from '@/components/FancyLink'
 import { fade } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
