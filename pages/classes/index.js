@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import sanity from "@/lib/sanity"
 import BlockContent from '@sanity/block-content-to-react'
-import { useNextSanityImage } from 'next-sanity-image';
+import Image from 'next/image';
 import { NextSeo } from 'next-seo'
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from "react";
@@ -62,16 +62,14 @@ useEffect(() => {
       />
       
       <LazyMotion features={domAnimation}>
-         
-        <m.div initial="initial" animate="enter" exit="exit" variants={fade}>
           
           <Header global={global} isHome />
 
-          <div className="relative bg-primary h-screen xl:max-h-[800px] landscape:min-h-[450px]">
+          <div className="relative bg-primary-dark h-screen xl:max-h-[800px] landscape:min-h-[450px]">
 
-            <div className="absolute inset-0 z-0">
-                <img className="object-cover object-center w-full h-full" src={page.heroImage.asset.url} alt="Excelsior Dance Studio" />
-            </div>
+            <m.div className="absolute inset-0 z-0" variants={fade} initial="initial" animate="enter" exit="exit">
+                <Image layout="fill" objectFit="cover" objectPosition="center" alt="Excelsior Dance Studio" className="relative z-0 w-full h-full opacity-75" src={page.heroImage.asset.url} /> 
+            </m.div>
             
             <div className="relative z-[1] h-full text-white flex flex-col items-center justify-center px-8 landscape:py-40">
               
@@ -111,13 +109,13 @@ useEffect(() => {
                     return(
                       <div className={`class-item rounded-sm shadow-lg flex-col sm:flex-row flex-wrap bg-white ${CurrentClass === item.slug.current ? 'flex' : 'hidden'}`} key={index}>
                         
-                        <div className="relative bg-gray-200 sm:w-1/2">
-                          <img className="absolute top-0 left-0 object-cover w-full h-full" src={item.classImage.asset.url} alt={item.title} />
+                        <div className="relative bg-gray-200 h-96 sm:h-auto sm:w-1/2">
+                           <Image layout="fill" objectFit="cover" objectPosition="center" alt="Excelsior Dance Studio" className="relative z-0 w-full h-full" src={item.classImage.asset.url} /> 
                         </div>
 
                         <div className="p-8 lg:p-12 sm:w-1/2">
                           
-                          <h2>{item.title}</h2>
+                          <h2 ref={ref} variants={fade} initial="initial" animate={controls} exit="exit">{item.title}</h2>
                           
                           <div className="content">
                             <BlockContent serializers={{ container: ({ children }) => children }} blocks={item.content} />
@@ -166,8 +164,6 @@ useEffect(() => {
           </div>
 
         <Footer global={global} />
-
-        </m.div>
 
       </LazyMotion>      
 

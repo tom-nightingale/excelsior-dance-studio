@@ -7,7 +7,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Container from '@/components/Container'
 import FancyLink from '@/components/FancyLink'
-import { fade } from '@/helpers/transitions'
+import { fadeInUp } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
@@ -33,7 +33,7 @@ export default function Page({ data:{global, page} }) {
 
       <LazyMotion features={domAnimation}>
          
-        <m.div initial="initial" animate="enter" exit="exit" variants={fade}>
+        
           
           <Header global={global} />
 
@@ -41,11 +41,15 @@ export default function Page({ data:{global, page} }) {
 
             <Container>
 
-                <h1 className="text-center text-white">{page.title}</h1>
+                <div className="relative overflow-hidden">
+                  <m.h1 className="text-center text-white" variants={fadeInUp} initial="initial" animate="enter" exit="exit">{page.title}</m.h1>
+                </div>
 
-                <div className="flex-wrap justify-center xs:flex">
-                  Unity
-                </div>              
+                <m.div className="max-w-2xl mx-auto mb-4 text-center text-white content" variants={fadeInUp} initial="initial" animate="enter" exit="exit">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum imperdiet pulvinar blandit. Duis et accumsan ante. Fusce blandit magna sed felis pretium, nec lobortis massa tincidunt. Nulla felis ante, vehicula vitae nibh id, vestibulum suscipit odio. Sed elementum consequat augue, eu gravida quam mollis ac. Aliquam lobortis ut felis a rhoncus. Donec sed metus a nisl lobortis auctor vel ac mi. Integer quis eleifend nisi. Mauris efficitur arcu ut arcu convallis dignissim. Cras in viverra eros, quis lacinia magna. Suspendisse vehicula dignissim interdum.</p>
+
+                  <p>Maecenas sed faucibus nibh. Donec in porttitor quam, sit amet suscipit sem. Ut id sagittis mi. Fusce in felis et tellus rhoncus tristique. Quisque justo ipsum, posuere sed cursus sodales, mollis ac dui. Nam venenatis consectetur justo ac facilisis. Praesent lacinia ante sit amet mi molestie commodo. Integer at dolor vel elit efficitur vulputate. In condimentum sit amet dui in sodales. Donec interdum condimentum nisi, ac lobortis nulla.</p>
+                </m.div>              
             
             </Container>
 
@@ -53,7 +57,7 @@ export default function Page({ data:{global, page} }) {
 
           <Footer global={global} />
 
-        </m.div>
+        
                 
       </LazyMotion>
 

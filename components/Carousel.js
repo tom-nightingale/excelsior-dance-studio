@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import Image from 'next/image'
 
 export default function Carousel({ items }) {
 
@@ -39,13 +40,16 @@ export default function Carousel({ items }) {
                     
                     <div className="flex w-full overflow-x-auto scrolling-touch carousel-container">
                         {items.map((item, index) => {
-                            let imageUrl = "";
-                            item.profilePhoto ? imageUrl = item.profilePhoto.asset.url : '';
-
+                            let image = "";
+                            item.asset ? image = item.asset : ''; // Gallery images
+                            item.profilePhoto ? image = item.profilePhoto.asset : ''; // Teacher profile images
+                            
                             return (
-                                <div className="flex-none w-1/2 px-4 xs:w-1/3 md:w-1/3 lg:w-1/4 carousel-item" key={index}>
-                                    <div className="w-full">                            
-                                        <img className="block w-full" src={imageUrl} alt="" />
+                                <div className="flex-none w-1/2 px-4 xs:w-1/2 lg:w-1/4 carousel-item" key={index}>
+                                    <div>
+                                        <div className="relative w-full h-56 sm:h-72">                    
+                                            <Image objectFit="cover" objectPosition="center" layout="fill" alt="" className="w-full h-72" src={image.url} /> 
+                                        </div>
                                         {item.name &&
                                             <p className="mt-4 text-lg font-black leading-snug tracking-wider uppercase">{item.name}</p>
                                         }
@@ -53,6 +57,7 @@ export default function Carousel({ items }) {
                                             <p>{item.position}</p>
                                         }
                                     </div>
+
                                 </div>
                             )
                         })}

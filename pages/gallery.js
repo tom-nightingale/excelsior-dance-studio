@@ -12,7 +12,7 @@ import Footer from '@/components/Footer'
 import Container from '@/components/Container'
 import FancyLink from '@/components/FancyLink'
 import ContactForm from '@/components/ContactForm'
-import { fade } from '@/helpers/transitions'
+import { fade, fadeInUp, listTabs, staggerTabs } from '@/helpers/transitions'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { NextSeo } from 'next-seo'
 
@@ -59,21 +59,33 @@ export default function Page({ data:{global, page} }) {
 
             <Container>
 
-                <h1 className="text-center text-white">{page.title}</h1>
+                <div className="relative overflow-hidden">
+                  <m.h1 className="text-center text-white" variants={fadeInUp} initial="initial" animate="enter" exit="exit">{page.title}</m.h1>
+                </div>
 
                  <Tabs>
 
                   <TabList className="flex flex-wrap justify-center mb-8 text-lg font-black text-white uppercase">
-                    <Tab className="px-5 py-3 mx-4 cursor-pointer btn btn--outline hover:border-white">Images</Tab>
-                    <Tab className="px-5 py-3 mx-4 cursor-pointer btn btn--outline hover:border-white">Videos</Tab>    
+                    <m.div variants={listTabs} initial="initial" animate="enter" exit="exit" className="flex flex-wrap justify-center max-w-screen-xl mx-auto text-lg font-black text-white uppercase">
+                      <Tab className="p-2">
+                        <m.div variants={staggerTabs}>
+                            <button className="block w-full py-3 text-sm text-center cursor-pointer mx-3px-5 sm:text-lg btn btn--outline hover:border-white">Images</button>
+                        </m.div>
+                      </Tab>
+
+                      <Tab className="p-2">
+                        <m.div variants={staggerTabs}>
+                            <button className="block w-full py-3 text-sm text-center cursor-pointer mx-3px-5 sm:text-lg btn btn--outline hover:border-white">Videos</button>
+                        </m.div>
+                      </Tab>
+                    </m.div>
                   </TabList>
 
                   <TabPanel>
 
-                      <div className="flex flex-wrap justify-center mx-auto max-w-screen-2xl">
+                      <m.div variants={fadeInUp} initial="initial" animate="enter" exit="exit" className="flex flex-wrap justify-center mx-auto max-w-screen-2xl">
 
-                        {page.images.map((item, index) => {
-                          
+                        {page.images.map((item, index) => {                          
                           return(
                             <div key={index} className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
                               <a className="relative block h-40 cursor-pointer md:h-72" onClick={() => { showSlide(index + 1) } }>                                
@@ -95,7 +107,7 @@ export default function Page({ data:{global, page} }) {
                             type="image"
                         />
                         
-                      </div>             
+                      </m.div>             
 
                   </TabPanel>
 

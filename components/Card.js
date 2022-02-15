@@ -1,13 +1,34 @@
-export default function Card({ image, name, position, containerClasses, cardClasses }) {
+import { m } from 'framer-motion'
+import Image from 'next/image'
+
+export default function Card({ image, name, position, containerClasses, cardClasses, variants }) {
     return (
-        <div className={containerClasses}>
+        <>
+        {variants && (
+        <m.div variants={variants} className={containerClasses}>
             <div className={cardClasses}>
                 <div className="relative w-full mb-4 bg-gray-200">
-                    <img src={image.asset.url} alt={name} />
+                    <div className="relative w-full h-72">                    
+                        <Image layout="fill" objectFit="cover" objectPosition="center" alt="Excelsior Dance Studio" className="relative z-0 w-full h-full" src={image.asset.url} /> 
+                    </div>
+                </div>
+                <p className="font-black uppercase">{name}</p>
+                <p>{position}</p>
+            </div>
+        </m.div>
+        )}
+
+        {!variants && (
+        <div className={`${containerClasses}`}>
+            <div className={cardClasses}>
+                <div className="relative w-full h-72">                    
+                    <Image layout="fill" objectFit="cover" objectPosition="center" alt="Excelsior Dance Studio" className="relative z-0 w-full h-full" src={image.asset.url} /> 
                 </div>
                 <p className="font-black uppercase">{name}</p>
                 <p>{position}</p>
             </div>
         </div>
+        )}
+        </>
     )
 }
