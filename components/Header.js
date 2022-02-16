@@ -64,7 +64,7 @@ export default function Header({ global, isHome }) {
 
             {navItems.map((item, index) => {
               return(
-                <li key={index} className="">
+                <li key={index} onClick={() => setOpen(!open)} className="">
                   <FancyLink destination={item.url} a11yText={`Go to the ${item.name} page`} label={item.name} extraClasses={`inline-block py-2 xl:py-4 tracking-wider uppercase ${item.url === currentPath ? 'text-primary-light' : ''}`} />
                 </li>
               )
