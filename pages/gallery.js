@@ -23,6 +23,11 @@ export default function Page({ data:{global, page} }) {
     galleryImages.push(image.asset.url);
   });
 
+  const videosArray = [];       
+  page.videos.forEach((video) => {
+    videosArray.push(video.url);
+  })
+
   const [visible, isVisible] = useState(false);
   const [slide, slideNumber] = useState(1);
 
@@ -50,8 +55,6 @@ export default function Page({ data:{global, page} }) {
       />
 
       <LazyMotion features={domAnimation}>
-         
-        <m.div initial="initial" animate="enter" exit="exit" variants={fade}>
 
           <Header global={global}/>
       
@@ -115,17 +118,18 @@ export default function Page({ data:{global, page} }) {
 
                     <div className="flex flex-wrap justify-center mx-auto max-w-screen-2xl">
 
-                        {page.videos.map((item, index) => {                          
-                          const posterImage = item.replace('https://youtu.be/', '');
+                        {page.videos.map((item, index) => {                                             
+                          const posterImage = item.url.replace('https://youtu.be/', '');
                           return(
                             <div key={index} className="w-1/2 p-2 sm:w-1/3 md:w-1/4">
-                              <a className="relative block w-full h-40 cursor-pointer md:h-72" onClick={() => { showSlide(index + 1) } }>
+                              <a className="relative block w-full h-40 overflow-hidden cursor-pointer md:h-72 group" onClick={() => { showSlide(index + 1) } }>
                                 <Image
                                   src={`https://img.youtube.com/vi/${posterImage}/0.jpg`}
                                   alt="Excelsior Studios"
                                   layout="fill"
                                   objectFit="cover"
                                 />
+                                <span className="absolute bottom-[-100%] transform group-hover:bottom-0 transition-all bg-black/70 p-3 text-sm flex item-center justify-center duration-300 left-0 w-full font-bold text-center text-white">{item.title}</span>
                               </a>
                             </div>
                           )
@@ -134,7 +138,7 @@ export default function Page({ data:{global, page} }) {
                         <FsLightbox
                             toggler={visible}
                             slide={slide}
-                            sources={page.videos}
+                            sources={videosArray}
                             type="youtube"
                         />                      
                       
@@ -175,8 +179,6 @@ export default function Page({ data:{global, page} }) {
           </div>
 
           <Footer global={global} />
-
-        </m.div>
         
       </LazyMotion>      
 
