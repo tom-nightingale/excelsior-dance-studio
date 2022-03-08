@@ -37,9 +37,9 @@ useEffect(() => {
   const [CurrentClass, setCurrentClass] = useState('ballet');
 
   const handleToggle = (slug) => {
-    setCurrentClass(slug);
     setSelectorOpen(false);
-    myRef.current.scrollIntoView() 
+    setCurrentClass(slug);
+    myRef.current.scrollIntoView();
   };
     
 
@@ -121,10 +121,28 @@ useEffect(() => {
                             <BlockContent serializers={{ container: ({ children }) => children }} blocks={item.content} />
                           </div>
 
-                          <p className="mt-4"><span className="font-black">Teachers:</span> Angela</p>
+                          {item.classTeachers &&
+                            <p className="mt-4"><span className="font-black">Teachers: </span>
+                              {item.classTeachers.map((teacher, index) => {
+                                return(
+                                  <span key={index}>{teacher.name}</span>
+                                )
+                              })}
+                            </p>
+                          }
 
-                          <p className="mt-4"><span className="font-black">Class days:</span>
-                          <span className="inline-block px-3 py-2 m-1 text-xs font-black tracking-wider text-white uppercase rounded-lg bg-primary-light">Monday</span></p>
+                          {item.classDays &&
+                              <p key={index} className="mt-4"><span className="font-black">Class days:</span>
+                              {item.classDays.map((day, index) => {
+                                return (
+                                    <span className="inline-block px-3 py-2 m-1 text-xs font-black tracking-wider text-white uppercase rounded-lg bg-primary-light">{day.title}</span>
+                                    )
+                                  })}
+                              </p>
+                          }
+                          
+
+                          
                           
                         </div>
 
@@ -208,6 +226,8 @@ const query = `{
     classImage {
       asset->
     },
+    classDays[]->,
+    classTeachers[]->,
     slug
   }
 }`
