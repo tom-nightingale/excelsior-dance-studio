@@ -65,7 +65,7 @@ useEffect(() => {
           
           <Header global={global} isHome />
 
-          <div className="relative bg-primary-dark h-screen xl:max-h-[800px] landscape:min-h-[450px]">
+          <div className="relative bg-primary-dark h-screen xl:h-[800px] landscape:min-h-[450px]">
 
             <m.div className="absolute inset-0 z-0" variants={fade} initial="initial" animate="enter" exit="exit">
                 <Image layout="fill" objectFit="cover" objectPosition="center" alt="Excelsior Dance Studio" className="relative z-0 w-full h-full opacity-75" src={page.heroImage.asset.url} /> 

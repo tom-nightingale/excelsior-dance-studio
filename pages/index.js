@@ -37,7 +37,7 @@ export default function Home({ data:{global, home, teachers, classes, gallery} }
          
         <Header global={global} isHome />
 
-        <div className="relative bg-primary-dark h-screen xl:max-h-[1000px] landscape:min-h-[450px]">
+        <div className="relative bg-primary-dark h-screen xl:h-[1000px] landscape:min-h-[450px]">
 
           <m.div className="absolute inset-0 z-0" variants={fade} initial="initial" animate="enter" exit="exit">
             {home.heroImages.map((image, index) => {
