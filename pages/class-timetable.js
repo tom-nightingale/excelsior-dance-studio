@@ -69,8 +69,8 @@ export default function Page({ data:{global, home, timetable} }) {
                     return(
                       day.timetable && day.timetable.length > 0 && (
                         <TabPanel key={index} className="max-w-screen-lg mx-auto overflow-hidden text-primary" variants={fadeInUp} initial="initial" enter="enter" exit="exit">                    
-                          <div className="p-8 text-sm bg-white rounded-md lg:p-16" >
-                            <m.div variants={fade} initial="initial" animate="enter" exit="exit">
+                          <m.div variants={fade} initial="initial" animate="enter" exit="exit">
+                            <div className="p-8 text-sm bg-white rounded-md lg:p-16" >
                               <div className="relative overflow-hidden leading-snug">
                                 <m.h2 variants={fadeInUp} initial="initial" animate="enter" exit="exit">{day.title}</m.h2>
                               </div>
@@ -92,8 +92,8 @@ export default function Page({ data:{global, home, timetable} }) {
                                   })
                                 }
                               <p className="p-4 mt-8 text-xs font-black tracking-wider text-center text-white uppercase rounded-md bg-gradient-to-r from-primary-dark via-primary to-primary-dark">Private lessons are available in 20 minute slots on request</p>                            
-                            </m.div>
-                          </div>
+                            </div>
+                          </m.div>
                         </TabPanel>
                       )
                     )

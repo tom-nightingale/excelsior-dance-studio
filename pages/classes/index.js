@@ -107,7 +107,7 @@ useEffect(() => {
               <Container>
                 {classes.map((item, index) => { 
                     return(
-                      <div className={`class-item rounded-sm shadow-lg flex-col sm:flex-row flex-wrap bg-white ${CurrentClass === item.slug.current ? 'flex' : 'hidden'}`} key={index}>
+                      <m.div variants={heroButton} initial="initial" animate="enter" exit="exit" className={`class-item rounded-sm shadow-lg flex-col sm:flex-row flex-wrap bg-white ${CurrentClass === item.slug.current ? 'flex' : 'hidden'}`} key={index}>
                         
                         <div className="relative bg-gray-200 h-96 sm:h-auto sm:w-1/2">
                            <Image layout="fill" objectFit="cover" objectPosition="center" alt="Excelsior Dance Studio" className="relative z-0 w-full h-full" src={item.classImage.asset.url} /> 
@@ -128,7 +128,7 @@ useEffect(() => {
                           
                         </div>
 
-                      </div>
+                      </m.div>
                     )
                 })}            
               </Container>
