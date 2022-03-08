@@ -2,8 +2,6 @@ import sanity from "@/lib/sanity"
 import BlockContent from '@sanity/block-content-to-react'
 import Image from 'next/image'
 import { NextSeo } from 'next-seo'
-import { useInView } from 'react-intersection-observer';
-import { useEffect } from "react";
 
 import Layout from '@/components/Layout'
 import Header from '@/components/Header'
@@ -13,22 +11,9 @@ import ContactForm from '@/components/ContactForm'
 import Carousel from '@/components/Carousel'
 import FancyLink from '@/components/FancyLink'
 import { fade, fadeInUp, heroSubheading, heroHeading, heroButton} from '@/helpers/transitions'
-import { LazyMotion, domAnimation, m, useAnimation } from 'framer-motion'
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 
 export default function Home({ data:{global, home, teachers, classes, gallery} }) {
-
-  const controls = useAnimation();
-  const { ref, inView } = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('enter');
-    }
-    if (!inView) {
-      controls.start('initial');
-    }
-  }, [controls, inView]);
-    
 
   return (
     <Layout>
@@ -85,7 +70,7 @@ export default function Home({ data:{global, home, teachers, classes, gallery} }
         
         <div className="bg-gradient-to-r from-primary via-primary-dark to-primary">
 
-            <m.article ref={ref} variants={fade} initial="initial" animate={controls} exit="exit" className="p-8 py-16 text-center text-white md:p-12 lg:p-20">
+            <m.article variants={fade} initial="initial" animate="enter" exit="exit" className="p-8 py-16 text-center text-white md:p-12 lg:p-20">
 
               <h1>{home.aboutContentHeading}</h1>
 
