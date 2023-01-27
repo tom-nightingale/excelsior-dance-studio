@@ -31,7 +31,7 @@ export default function Footer({ global }) {
         <Container>
               <div className="flex flex-col justify-between text-sm text-center text-white lg:flex-row lg:text-left">
 
-                  <p className="my-4 lg:my-0">© Copyright Excelsior Dance Studios 2021 - All rights reserved</p>
+                  <p className="my-4 lg:my-0">© Copyright Excelsior Dance Studios {new Date().getFullYear()} - All rights reserved</p>
 
                   <p className="my-4 lg:my-0"><a className="transition duration-500 text-primary-light hover:text-white" href={`tel:${global.phoneNumber}`}>{global.phoneNumber}</a> <span className="text-xs">&bull;</span> {global.address}</p>
 
